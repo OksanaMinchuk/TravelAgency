@@ -1,0 +1,3 @@
+by.epam.javatr.minchuk.project.controller.Controller.doPost(Controller.java:29) 2019-05-05 22:07:01 - doPost metod
+by.epam.javatr.minchuk.project.controller.Controller.doPost(Controller.java:29) 2019-05-05 22:07:02 - doPost metod
+by.epam.javatr.minchuk.project.controller.Controller.destroy(Controller.java:35) 2019-05-05 22:14:00 - destroy metod
