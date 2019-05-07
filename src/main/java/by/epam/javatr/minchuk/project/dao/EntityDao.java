@@ -1,6 +1,7 @@
 package by.epam.javatr.minchuk.project.dao;
 
 import by.epam.javatr.minchuk.project.model.entity.Entity;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 
 import java.util.List;
 
@@ -13,11 +14,10 @@ import java.util.List;
 
 public interface EntityDao {
 
-    public void create(Entity entity);
-    public Entity update (Entity entity);
-    public void delete (int id);
-    public void delete (Entity entity);
-    public Entity findAllById (int id);
-    public List<Entity> findAll ();
+    void create(Entity entity) throws TravelAgencyDAOException;
+    void update (Entity entity) throws TravelAgencyDAOException;
+    void delete (int id);
+    Entity findById (int id);
+    List<Entity> findAll ();
 
 }

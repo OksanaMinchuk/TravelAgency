@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @version 1.0 28/04/2019
  */
 
-public final class ConnectionPool {
+public class ConnectionPool {
 
     private volatile static ConnectionPool instance;
     private static final Logger LOGGER;
