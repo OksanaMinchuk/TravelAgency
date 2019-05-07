@@ -19,14 +19,16 @@ public class Tour extends Entity {
 
     private TourType type;
     private double price;
+    private boolean hot;
 
     public Tour() {
     }
 
-    public Tour(int id, TourType type, double price) {
+    public Tour(int id, TourType type, double price, boolean hot) {
         super(id);
         this.type = type;
         this.price = price;
+        this.hot = hot;
     }
 
     public TourType getType() {
@@ -53,6 +55,16 @@ public class Tour extends Entity {
         }
     }
 
+    public boolean isHot() {
+        return hot;
+    }
+
+    public void setHot(boolean hot) {
+        this.hot = hot;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,12 +72,13 @@ public class Tour extends Entity {
         if (!super.equals(o)) return false;
         Tour tour = (Tour) o;
         return Double.compare(tour.price, price) == 0 &&
+                hot == tour.hot &&
                 type == tour.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), type, price);
+        return Objects.hash(super.hashCode(), type, price, hot);
     }
 
     @Override
@@ -73,7 +86,7 @@ public class Tour extends Entity {
         return "Tour{" + super.toString() +
                 "type=" + type +
                 ", price=" + price +
+                ", hot=" + hot +
                 '}';
     }
-
 }

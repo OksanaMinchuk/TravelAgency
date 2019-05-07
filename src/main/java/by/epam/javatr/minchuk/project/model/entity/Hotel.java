@@ -16,16 +16,16 @@ import java.util.Objects;
 public class Hotel extends Entity {
 
     private String name;
-    private List<Room> rooms;
+    private double pricePerDay;
 
     public Hotel() {
-        rooms = new ArrayList<>();
+
     }
 
-    public Hotel(int id, String name, List<Room> rooms) {
+    public Hotel(int id, String name, double pricePerDay) {
         super(id);
         this.name = name;
-        this.rooms = rooms;
+        this.pricePerDay = pricePerDay;
     }
 
     public String getName() {
@@ -40,47 +40,15 @@ public class Hotel extends Entity {
         }
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public double getPricePerDay() {
+        return pricePerDay;
     }
 
-    public void setRooms(List<Room> rooms) throws TravelAgencyDataWrongException {
-        if (rooms != null) {
-            this.rooms = rooms;
+    public void setPricePerDay(double pricePerDay) throws TravelAgencyDataWrongException {
+        if (pricePerDay >= 0) {
+            this.pricePerDay = pricePerDay;
         } else {
-            throw new TravelAgencyDataWrongException("Incorrect rooms value.");
-        }
-    }
-
-    public Room getRoomByIndex(int index) throws TravelAgencyDataWrongException {
-        if (index >= 0 && index < rooms.size()) {
-            return rooms.get(index);
-        } else {
-            throw new TravelAgencyDataWrongException("Incorrect index room value.");
-        }
-    }
-
-    public void addRoom(Room room) throws TravelAgencyDataWrongException {
-        if (room != null) {
-            rooms.add(room);
-        } else {
-            throw new TravelAgencyDataWrongException("Incorrect room value.");
-        }
-    }
-
-    public void removeRoom(Room room) throws TravelAgencyDataWrongException {
-        if (room != null) {
-            rooms.remove(room);
-        } else {
-            throw new TravelAgencyDataWrongException("Incorrect room value.");
-        }
-    }
-
-    public void removeRoomByIndex(int index) throws TravelAgencyDataWrongException {
-        if (index >= 0 && index < rooms.size()) {
-            rooms.remove(index);
-        } else {
-            throw new TravelAgencyDataWrongException("Incorrect index room value.");
+            throw new TravelAgencyDataWrongException("Incorrect pricePerDay value.");
         }
     }
 
@@ -90,20 +58,20 @@ public class Hotel extends Entity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Hotel hotel = (Hotel) o;
-        return name.equals(hotel.name) &&
-                rooms.equals(hotel.rooms);
+        return Double.compare(hotel.pricePerDay, pricePerDay) == 0 &&
+                name.equals(hotel.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, rooms);
+        return Objects.hash(super.hashCode(), name, pricePerDay);
     }
 
     @Override
     public String toString() {
         return "Hotel{" + super.toString() +
                 "name='" + name + '\'' +
-                ", rooms=" + rooms +
+                ", pricePerDay=" + pricePerDay +
                 '}';
     }
 }

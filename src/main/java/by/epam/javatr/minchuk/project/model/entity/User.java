@@ -1,5 +1,6 @@
 package by.epam.javatr.minchuk.project.model.entity;
 
+import by.epam.javatr.minchuk.project.model.entity.type.RoleType;
 import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
 
 import java.util.Objects;
@@ -12,10 +13,6 @@ import java.util.Objects;
  */
 
 public class User extends Entity {
-
-    public enum RoleType {
-        ADMIN, VISITOR, CLIENT, MANAGER
-    }
 
     private String name;
     private String surname;
@@ -31,13 +28,13 @@ public class User extends Entity {
     public User(int id, String name, String surname, String email,
                 double discount, String login, String password, RoleType role) {
         super(id);
-            this.name = name;
-            this.surname = surname;
-            this.email = email;
-            this.discount = discount;
-            this.login = login;
-            this.password = password;
-            this.role = role;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.discount = discount;
+        this.login = login;
+        this.password = password;
+        this.role = role;
     }
 
     public String getName() {
@@ -81,10 +78,10 @@ public class User extends Entity {
     }
 
     public void setDiscount(double discount) throws TravelAgencyDataWrongException {
-        if (discount >= 0) {
+        if (discount >= 0 && discount <= 1) {
             this.discount = discount;
         } else {
-            throw new TravelAgencyDataWrongException("Incorrect discount value.");
+            throw new TravelAgencyDataWrongException("Incorrect discount value, it will be from 0 to 100%.");
         }
     }
 
