@@ -14,5 +14,6 @@ public interface UserDao extends EntityDao {
 
     User logIn(String login, String password);
     void setDiscount(int id, double discount);
+    void setMoney(int id, double money);
 
 }

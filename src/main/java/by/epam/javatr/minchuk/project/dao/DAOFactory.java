@@ -17,6 +17,7 @@ public class DAOFactory {
     private static final VaucherDao VAUCHER_DAO = new VaucherDaoImplSql();
     private static final TourDao TOUR_DAO = new TourDaoImplSql();
     private static final HotelDao HOTEL_DAO = new HotelDaoImplSql();
+    private static final OrderDao ORDER_DAO = new OrderDaoImplSql();
 
     private static final DAOFactory instance = new DAOFactory();
     private static final Logger LOGGER;
@@ -33,20 +34,23 @@ public class DAOFactory {
         return instance;
     }
 
-    public static UserDao getUserDao() {
+    public UserDao getUserDao() {
         return USER_DAO;
     }
 
-    public static VaucherDao getVaucherDao() {
+    public VaucherDao getVaucherDao() {
         return VAUCHER_DAO;
     }
 
-    public static TourDao getTourDao() {
+    public TourDao getTourDao() {
         return TOUR_DAO;
     }
 
-    public static HotelDao getHotelDao() {
+    public HotelDao getHotelDao() {
         return HOTEL_DAO;
     }
 
+    public OrderDao getOrderDao() {
+        return ORDER_DAO;
+    }
 }
