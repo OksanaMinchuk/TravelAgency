@@ -47,7 +47,7 @@ public class UserDaoImplSql implements UserDao {
     }
 
     @Override
-    public User logIn(String login, String password) {
+    public User logIn(String login, String password) throws TravelAgencyDAOException {
         LOGGER.debug("start user logIn");
         User user = null;
 
@@ -77,12 +77,14 @@ public class UserDaoImplSql implements UserDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("user logIn exception ", e);
+                throw new TravelAgencyDAOException("user logIn exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -95,7 +97,7 @@ public class UserDaoImplSql implements UserDao {
     }
 
     @Override
-    public void setDiscount(int id, double discount) {
+    public void setDiscount(int id, double discount) throws TravelAgencyDAOException {
         LOGGER.debug("start setDiscount user by ID");
 
         if (id > 0 && discount >= 0 && discount <= 100) {
@@ -112,12 +114,14 @@ public class UserDaoImplSql implements UserDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("user setDiscount exception ", e);
+                throw new TravelAgencyDAOException("user setDiscount exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -129,7 +133,7 @@ public class UserDaoImplSql implements UserDao {
     }
 
     @Override
-    public void setMoney(int id, double money) {
+    public void setMoney(int id, double money) throws TravelAgencyDAOException {
         LOGGER.debug("start setMoney user by ID");
 
         if (id > 0 && money >= 0) {
@@ -146,12 +150,14 @@ public class UserDaoImplSql implements UserDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("user setMoney exception ", e);
+                throw new TravelAgencyDAOException("user setMoney exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -193,12 +199,14 @@ public class UserDaoImplSql implements UserDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("user registration exception ", e);
+                throw new TravelAgencyDAOException("user registration exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -237,12 +245,14 @@ public class UserDaoImplSql implements UserDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("user update exception ", e);
+                throw new TravelAgencyDAOException("user update exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -256,7 +266,7 @@ public class UserDaoImplSql implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start delete user by ID");
 
         if(id > 0) {
@@ -272,12 +282,14 @@ public class UserDaoImplSql implements UserDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("user delete by ID exception ", e);
+                throw new TravelAgencyDAOException("user delete by ID exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -289,7 +301,7 @@ public class UserDaoImplSql implements UserDao {
     }
 
     @Override
-    public Entity findById(int id) {
+    public Entity findById(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start find user by ID");
         User user = null;
 
@@ -317,12 +329,14 @@ public class UserDaoImplSql implements UserDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("user find by ID exception ", e);
+                throw new TravelAgencyDAOException("user find by ID exception ", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -335,7 +349,7 @@ public class UserDaoImplSql implements UserDao {
     }
 
     @Override
-    public List<Entity> findAll() {
+    public List<Entity> findAll() throws TravelAgencyDAOException {
         LOGGER.debug("start find all users");
 
         ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -363,12 +377,14 @@ public class UserDaoImplSql implements UserDao {
             }
         } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
             LOGGER.error("find all users exception ", e);
+            throw new TravelAgencyDAOException("find all users exception ", e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
                     LOGGER.error("database access error occurs", e);
+                    throw new TravelAgencyDAOException("database access error occurs", e);
                 }
             }
             if (connectionPool != null) {

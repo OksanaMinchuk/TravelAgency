@@ -2,6 +2,7 @@ package by.epam.javatr.minchuk.project.service;
 
 
 import by.epam.javatr.minchuk.project.model.entity.Vaucher;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public interface VaucherService extends EntityService {
 
-    List<Vaucher> getVauchersByCountry(String country);
-    List<Vaucher> getVauchersByTourType(String type);
+    List<Vaucher> getVauchersByCountry(String country) throws TravelAgencyServiceException;
+    List<Vaucher> getVauchersByTourType(String type) throws TravelAgencyServiceException;
 
 }

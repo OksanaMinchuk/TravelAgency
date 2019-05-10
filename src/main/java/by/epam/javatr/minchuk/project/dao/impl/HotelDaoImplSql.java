@@ -58,12 +58,14 @@ public class HotelDaoImplSql implements HotelDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("hotel registration exception ", e);
+                throw new TravelAgencyDAOException("hotel registration exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -80,7 +82,7 @@ public class HotelDaoImplSql implements HotelDao {
     public void update(Entity entity) throws TravelAgencyDAOException {
         LOGGER.debug("start update hotel by ID");
 
-        if (entity instanceof Tour) {
+        if (entity instanceof Hotel) {
             Hotel hotel =(Hotel) entity;
             ConnectionPool connectionPool = ConnectionPool.getInstance();
             Connection connection = null;
@@ -96,12 +98,14 @@ public class HotelDaoImplSql implements HotelDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("hotel update exception ", e);
+                throw new TravelAgencyDAOException("hotel update exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -116,7 +120,7 @@ public class HotelDaoImplSql implements HotelDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start delete hotel by ID");
 
         if(id > 0) {
@@ -132,12 +136,14 @@ public class HotelDaoImplSql implements HotelDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("hotel delete by ID exception ", e);
+                throw new TravelAgencyDAOException("hotel delete by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -149,7 +155,7 @@ public class HotelDaoImplSql implements HotelDao {
     }
 
     @Override
-    public Entity findById(int id) {
+    public Entity findById(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start find hotel by ID");
         Hotel hotel = null;
 
@@ -171,12 +177,14 @@ public class HotelDaoImplSql implements HotelDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("hotel find by ID exception ", e);
+                throw new TravelAgencyDAOException("hotel find by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -189,7 +197,7 @@ public class HotelDaoImplSql implements HotelDao {
     }
 
     @Override
-    public List<Entity> findAll() {
+    public List<Entity> findAll() throws TravelAgencyDAOException {
         LOGGER.debug("start find all hotels");
 
         ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -211,12 +219,14 @@ public class HotelDaoImplSql implements HotelDao {
             }
         } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
             LOGGER.error("find all hotels exception ", e);
+            throw new TravelAgencyDAOException("find all hotels exception", e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
                     LOGGER.error("database access error occurs", e);
+                    throw new TravelAgencyDAOException("database access error occurs", e);
                 }
             }
             if (connectionPool != null) {

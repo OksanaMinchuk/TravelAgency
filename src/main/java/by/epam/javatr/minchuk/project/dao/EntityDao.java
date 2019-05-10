@@ -16,8 +16,8 @@ public interface EntityDao {
 
     void create(Entity entity) throws TravelAgencyDAOException;
     void update (Entity entity) throws TravelAgencyDAOException;
-    void delete (int id);
-    Entity findById (int id);
-    List<Entity> findAll ();
+    void delete (int id) throws TravelAgencyDAOException;
+    Entity findById (int id) throws TravelAgencyDAOException;
+    List<Entity> findAll () throws TravelAgencyDAOException;
 
 }

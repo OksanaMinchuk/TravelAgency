@@ -1,6 +1,5 @@
 package by.epam.javatr.minchuk.project.service;
 
-import by.epam.javatr.minchuk.project.dao.DAOFactory;
 import by.epam.javatr.minchuk.project.service.impl.*;
 import org.apache.log4j.Logger;
 

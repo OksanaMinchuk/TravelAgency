@@ -21,7 +21,6 @@ public class ConnectionPool {
 
     private volatile static ConnectionPool instance;
     private static final Logger LOGGER;
-    private static AtomicBoolean create = new AtomicBoolean(false);
 
     private BlockingQueue<ProxyConnection> avaialableConnections;
     private BlockingQueue<ProxyConnection> givenConnections;
@@ -50,17 +49,14 @@ public class ConnectionPool {
     }
 
     /**
-     *
-     * @return singleton ConnectionPool object
+     * Returns singleton ConnectionPool object
+     * @return instance
      */
     public static ConnectionPool getInstance() {
-        if (!create.get()) {
-            if (instance == null) {
-                synchronized (ConnectionPool.class) {
-                    if (instance == null) {
-                        instance = new ConnectionPool();
-                        create.set(true);
-                    }
+        if (instance == null) {
+            synchronized (ConnectionPool.class) {
+                if (instance == null) {
+                    instance = new ConnectionPool();
                 }
             }
         }

@@ -16,8 +16,9 @@ public class User extends Entity {
 
     private String name;
     private String surname;
-    private String email;
     private double discount;
+    private double money;
+    private String email;
     private String login;
     private String password;
     private RoleType role;
@@ -25,13 +26,13 @@ public class User extends Entity {
     public User() {
     }
 
-    public User(int id, String name, String surname, String email,
-                double discount, String login, String password, RoleType role) {
+    public User(int id, String name, String surname, double discount, double money, String email, String login, String password, RoleType role) {
         super(id);
         this.name = name;
         this.surname = surname;
-        this.email = email;
         this.discount = discount;
+        this.money = money;
+        this.email = email;
         this.login = login;
         this.password = password;
         this.role = role;
@@ -77,11 +78,29 @@ public class User extends Entity {
         return discount;
     }
 
+    /**
+     * Ьethod sets the value of a personal discount from 0 to 100 percent
+     *
+     * @param discount
+     * @throws TravelAgencyDataWrongException
+     */
     public void setDiscount(double discount) throws TravelAgencyDataWrongException {
-        if (discount >= 0 && discount <= 1) {
+        if (discount >= 0 && discount <= 100) {
             this.discount = discount;
         } else {
             throw new TravelAgencyDataWrongException("Incorrect discount value, it will be from 0 to 100%.");
+        }
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) throws TravelAgencyDataWrongException {
+        if (money >= 0) {
+            this.money = money;
+        } else {
+            throw new TravelAgencyDataWrongException("Incorrect money value.");
         }
     }
 
@@ -128,6 +147,7 @@ public class User extends Entity {
         if (!super.equals(o)) return false;
         User user = (User) o;
         return Double.compare(user.discount, discount) == 0 &&
+                Double.compare(user.money, money) == 0 &&
                 name.equals(user.name) &&
                 surname.equals(user.surname) &&
                 email.equals(user.email) &&
@@ -138,7 +158,7 @@ public class User extends Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, surname, email, discount, login, password, role);
+        return Objects.hash(super.hashCode(), name, surname, email, discount, money, login, password, role);
     }
 
     @Override
@@ -146,8 +166,9 @@ public class User extends Entity {
         return "User{" + super.toString() +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
                 ", discount=" + discount +
+                ", money=" + money +
+                ", email='" + email + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +

@@ -1,5 +1,7 @@
 package by.epam.javatr.minchuk.project.service;
 
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
+
 /**
  * Interface {@code TourService}
  *
@@ -9,5 +11,5 @@ package by.epam.javatr.minchuk.project.service;
 
 public interface TourService extends EntityService {
 
-    void setHotTour(int id, boolean isHot);
+    void setHotTour(int id, boolean isHot) throws TravelAgencyServiceException;
 }

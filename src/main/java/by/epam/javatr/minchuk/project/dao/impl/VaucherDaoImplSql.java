@@ -78,7 +78,7 @@ public class VaucherDaoImplSql implements VaucherDao {
 
 
     @Override
-    public List<Vaucher> getVauchersByCountry(String country) {
+    public List<Vaucher> getVauchersByCountry(String country) throws TravelAgencyDAOException {
         LOGGER.debug("start find vauchers by country");
         List<Vaucher> vauchers = new ArrayList<>();
 
@@ -118,12 +118,14 @@ public class VaucherDaoImplSql implements VaucherDao {
             }
         } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
             LOGGER.error("find vauchers by country exception ", e);
+            throw new TravelAgencyDAOException("find vauchers by country exception", e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
                     LOGGER.error("database access error occurs", e);
+                    throw new TravelAgencyDAOException("database access error occurs", e);
                 }
             }
             if (connectionPool != null) {
@@ -135,7 +137,7 @@ public class VaucherDaoImplSql implements VaucherDao {
     }
 
     @Override
-    public List<Vaucher> getVauchersByTourType(String type) {
+    public List<Vaucher> getVauchersByTourType(String type) throws TravelAgencyDAOException {
         LOGGER.debug("start find vauchers by TourType");
         List<Vaucher> vauchers = new ArrayList<>();
 
@@ -175,12 +177,14 @@ public class VaucherDaoImplSql implements VaucherDao {
             }
         } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
             LOGGER.error("find vauchers by TourType exception ", e);
+            throw new TravelAgencyDAOException("find vauchers by TourType exception", e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
                     LOGGER.error("database access error occurs", e);
+                    throw new TravelAgencyDAOException("database access error occurs", e);
                 }
             }
             if (connectionPool != null) {
@@ -215,12 +219,14 @@ public class VaucherDaoImplSql implements VaucherDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("vaucher registration exception ", e);
+                throw new TravelAgencyDAOException("vaucher registration exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -258,12 +264,14 @@ public class VaucherDaoImplSql implements VaucherDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("vaucher update exception ", e);
+                throw new TravelAgencyDAOException("vaucher update exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -277,7 +285,7 @@ public class VaucherDaoImplSql implements VaucherDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start delete vaucher by ID");
 
         if(id > 0) {
@@ -293,12 +301,14 @@ public class VaucherDaoImplSql implements VaucherDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("vaucher delete by ID exception ", e);
+                throw new TravelAgencyDAOException("vaucher delete by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -310,7 +320,7 @@ public class VaucherDaoImplSql implements VaucherDao {
     }
 
     @Override
-    public Entity findById(int id) {
+    public Entity findById(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start find vaucher by ID");
         Vaucher vaucher = null;
 
@@ -350,12 +360,14 @@ public class VaucherDaoImplSql implements VaucherDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("vaucher find by ID exception ", e);
+                throw new TravelAgencyDAOException("vaucher find by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -368,7 +380,7 @@ public class VaucherDaoImplSql implements VaucherDao {
     }
 
     @Override
-    public List<Entity> findAll() {
+    public List<Entity> findAll() throws TravelAgencyDAOException {
         LOGGER.debug("start find all vauchers");
         List<Entity> vauchers = new ArrayList<>();
 
@@ -407,12 +419,14 @@ public class VaucherDaoImplSql implements VaucherDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("find all vauchers exception ", e);
+                throw new TravelAgencyDAOException("find all vauchers exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {

@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <test name="TravelAgencyTest">
+        <groups>
+            <run>
+                <exclude name="databaseChangeTest"  />
+                <!-- <include name="checkinTests"  /> -->
+            </run>
+        </groups>
+        <classes>
+            <class name="by.epam.javatr.minchuk.project.dao.connection.ConnectionPoolTest"/>
+            <class name="by.epam.javatr.minchuk.project.dao.impl.UserDaoImplSqlTest"/>
+            <class name="by.epam.javatr.minchuk.project.service.validator.ValidatorTest"/>
+        </classes>
+    </test>
+</suite>

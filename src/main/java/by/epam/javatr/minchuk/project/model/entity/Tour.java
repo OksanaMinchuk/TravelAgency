@@ -13,29 +13,25 @@ import java.util.Objects;
 
 public class Tour extends Entity {
 
-    public enum TourType {
-        BEACH_TOUR, EXCURSION, FITNES_TOUR, FESTIVAL, WEEKEND_TOUR, SHOPPING,
-    }
-
-    private TourType type;
+    private String type;
     private double price;
     private boolean hot;
 
     public Tour() {
     }
 
-    public Tour(int id, TourType type, double price, boolean hot) {
+    public Tour(int id, String type, double price, boolean hot) {
         super(id);
         this.type = type;
         this.price = price;
         this.hot = hot;
     }
 
-    public TourType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(TourType type) throws TravelAgencyDataWrongException {
+    public void setType(String type) throws TravelAgencyDataWrongException {
         if (type != null) {
             this.type = type;
         } else {
@@ -62,8 +58,6 @@ public class Tour extends Entity {
     public void setHot(boolean hot) {
         this.hot = hot;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

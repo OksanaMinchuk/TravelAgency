@@ -70,7 +70,7 @@ public class OrderDaoImplSql implements OrderDao {
     public void create(Entity entity) throws TravelAgencyDAOException {
         LOGGER.debug("start order registration");
 
-        if (entity instanceof Hotel) {
+        if (entity instanceof Order) {
             Order order = (Order) entity;
             ConnectionPool connectionPool = ConnectionPool.getInstance();
             Connection connection = null;
@@ -88,14 +88,17 @@ public class OrderDaoImplSql implements OrderDao {
                 userDao.setMoney(order.getUser().getId(), order.getUser().getMoney() - order.getTotalPrice());
 
                 connection.commit();
+
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("order registration exception ", e);
+                throw new TravelAgencyDAOException("order registration exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -109,7 +112,7 @@ public class OrderDaoImplSql implements OrderDao {
     }
 
     @Override
-    public void update(Entity entity) throws TravelAgencyDAOException {
+    public void update(Entity entity) {
         throw new UnsupportedOperationException("Not implemented method");
     }
 
@@ -119,7 +122,7 @@ public class OrderDaoImplSql implements OrderDao {
     }
 
     @Override
-    public void cancelOrder(Order order) {
+    public void cancelOrder(Order order) throws TravelAgencyDAOException {
         LOGGER.debug("start delete order by ID");
 
         if(order != null) {
@@ -139,12 +142,14 @@ public class OrderDaoImplSql implements OrderDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("order delete by ID exception ", e);
+                throw new TravelAgencyDAOException("order delete by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -156,7 +161,7 @@ public class OrderDaoImplSql implements OrderDao {
     }
 
     @Override
-    public Entity findById(int id) {
+    public Entity findById(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start find order by ID");
         Order order = null;
 
@@ -213,12 +218,14 @@ public class OrderDaoImplSql implements OrderDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("order find by ID exception ", e);
+                throw new TravelAgencyDAOException("order find by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -231,7 +238,7 @@ public class OrderDaoImplSql implements OrderDao {
     }
 
     @Override
-    public List<Entity> findAll() {
+    public List<Entity> findAll() throws TravelAgencyDAOException {
         LOGGER.debug("start find all vauchers");
         List<Entity> orders = new ArrayList<>();
 
@@ -288,12 +295,14 @@ public class OrderDaoImplSql implements OrderDao {
             }
         } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
             LOGGER.error("find all vauchers exception ", e);
+            throw new TravelAgencyDAOException("find all vauchers exception", e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
                     LOGGER.error("database access error occurs", e);
+                    throw new TravelAgencyDAOException("database access error occurs", e);
                 }
             }
             if (connectionPool != null) {

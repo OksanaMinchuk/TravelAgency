@@ -4,8 +4,6 @@ import by.epam.javatr.minchuk.project.dao.TourDao;
 import by.epam.javatr.minchuk.project.dao.connection.ConnectionPool;
 import by.epam.javatr.minchuk.project.model.entity.Entity;
 import by.epam.javatr.minchuk.project.model.entity.Tour;
-import by.epam.javatr.minchuk.project.model.entity.User;
-import by.epam.javatr.minchuk.project.model.entity.type.RoleType;
 import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyConnectionPoolException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
@@ -41,7 +39,7 @@ public class TourDaoImplSql implements TourDao {
     }
 
     @Override
-    public void setHotTour(int id, boolean isHot) {
+    public void setHotTour(int id, boolean isHot) throws TravelAgencyDAOException {
         LOGGER.debug("start setHotTour tour by ID");
 
         if (id > 0) {
@@ -58,12 +56,14 @@ public class TourDaoImplSql implements TourDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("setHotTour tour by ID exception ", e);
+                throw new TravelAgencyDAOException("setHotTour tour by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -94,12 +94,14 @@ public class TourDaoImplSql implements TourDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("user tour registration exception ", e);
+                throw new TravelAgencyDAOException("user tour registration exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -133,12 +135,14 @@ public class TourDaoImplSql implements TourDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("tour update exception ", e);
+                throw new TravelAgencyDAOException("tour update exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -152,7 +156,7 @@ public class TourDaoImplSql implements TourDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start delete tour by ID");
 
         if(id > 0) {
@@ -168,12 +172,14 @@ public class TourDaoImplSql implements TourDao {
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("tour delete by ID exception ", e);
+                throw new TravelAgencyDAOException("tour delete by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -185,7 +191,7 @@ public class TourDaoImplSql implements TourDao {
     }
 
     @Override
-    public Entity findById(int id) {
+    public Entity findById(int id) throws TravelAgencyDAOException {
         LOGGER.debug("start find tour by ID");
         Tour tour = null;
 
@@ -208,12 +214,14 @@ public class TourDaoImplSql implements TourDao {
                 }
             } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("tour find by ID exception ", e);
+                throw new TravelAgencyDAOException("tour find by ID exception", e);
             } finally {
                 if (ps != null) {
                     try {
                         ps.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
                     }
                 }
                 if (connectionPool != null) {
@@ -226,7 +234,7 @@ public class TourDaoImplSql implements TourDao {
     }
 
     @Override
-    public List<Entity> findAll() {
+    public List<Entity> findAll() throws TravelAgencyDAOException {
         LOGGER.debug("start find all tours");
 
         ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -249,12 +257,14 @@ public class TourDaoImplSql implements TourDao {
             }
         } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
             LOGGER.error("find all tours exception ", e);
+            throw new TravelAgencyDAOException("find all tours exception", e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
                     LOGGER.error("database access error occurs", e);
+                    throw new TravelAgencyDAOException("database access error occurs", e);
                 }
             }
             if (connectionPool != null) {

@@ -1,6 +1,7 @@
 package by.epam.javatr.minchuk.project.dao;
 
 import by.epam.javatr.minchuk.project.model.entity.Order;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 
 /**
  * Interface {@code OrderDao}
@@ -11,6 +12,6 @@ import by.epam.javatr.minchuk.project.model.entity.Order;
 
 public interface OrderDao extends EntityDao {
 
-    void cancelOrder (Order order);
+    void cancelOrder (Order order) throws TravelAgencyDAOException;
 
 }

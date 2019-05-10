@@ -1,6 +1,7 @@
 package by.epam.javatr.minchuk.project.service;
 
 import by.epam.javatr.minchuk.project.model.entity.User;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 
 /**
  * Interface {@code UserService}
@@ -11,8 +12,8 @@ import by.epam.javatr.minchuk.project.model.entity.User;
 
 public interface UserService extends EntityService {
 
-    User logIn(String login, String password);
-    void setDiscount(int id, double discount);
-    void setMoney(int id, double money);
+    User logIn(String login, String password) throws TravelAgencyServiceException;
+    void setDiscount(int id, double discount) throws TravelAgencyServiceException;
+    void setMoney(int id, double money) throws TravelAgencyServiceException;
 
 }

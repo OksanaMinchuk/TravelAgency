@@ -2,8 +2,8 @@ package by.epam.javatr.minchuk.project.model.entity;
 
 import by.epam.javatr.minchuk.project.model.entity.type.TransportType;
 import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
-import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyNullPointerException;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -13,17 +13,11 @@ import java.util.Objects;
  * @version 1.0 28/04/2019
  */
 
-public class Vaucher {
-
-    public enum CountryType {
-        AUSTRIA, BELARUS, BELGIUM, CYPRUS, CZECH_REPUBLIC, EGYPT, GERMANY, INDIA, MALTA
-    }
-
-    private static final double HOT_TOUR_CONSTANT = 0.8;
+public class Vaucher extends Entity {
 
     private String country;
-    private int nights;
-    private double totalPrice;
+    private Date dateFrom;
+    private Date dateTo;
     private Tour tour;
     private TransportType transport;
     private Hotel hotel;
@@ -31,10 +25,11 @@ public class Vaucher {
     public Vaucher() {
     }
 
-    public Vaucher(String country, int nights, double totalPrice, Tour tour, TransportType transport, Hotel hotel) {
+    public Vaucher(int id, String country, Date dateFrom, Date dateTo, Tour tour, TransportType transport, Hotel hotel) {
+        super(id);
         this.country = country;
-        this.nights = nights;
-        this.totalPrice = totalPrice;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
         this.tour = tour;
         this.transport = transport;
         this.hotel = hotel;
@@ -52,33 +47,27 @@ public class Vaucher {
         }
     }
 
-    public int getNights() {
-        return nights;
+    public Date getDateFrom() {
+        return dateFrom;
     }
 
-    public void setNights(int nights) throws TravelAgencyDataWrongException {
-        if (nights > 0) {
-            this.nights = nights;
+    public void setDateFrom(Date dateFrom) throws TravelAgencyDataWrongException {
+        if (dateFrom != null) {
+            this.dateFrom = dateFrom;
         } else {
-            throw new TravelAgencyDataWrongException("Incorrect country nights.");
+            throw new TravelAgencyDataWrongException("Incorrect dateFrom value.");
         }
     }
 
-    /**
-     * Method calculate total price depends on tour and hotel price and user's discount.
-     * @param user
-     * @return total price
-     * @throws TravelAgencyNullPointerException
-     */
-    public double getPrice (User user) throws TravelAgencyNullPointerException {
-        if (user != null) {
-            double totalPrice = (tour.getPrice() + hotel.getPricePerDay() * nights) * (1 - user.getDiscount()/100);
-            if (tour.isHot()) {
-                totalPrice *= HOT_TOUR_CONSTANT;
-            }
-            return  totalPrice;
+    public Date getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(Date dateTo) throws TravelAgencyDataWrongException {
+        if (dateTo != null) {
+            this.dateTo = dateTo;
         } else {
-            throw new TravelAgencyNullPointerException("Invoking a method for a null object.");
+            throw new TravelAgencyDataWrongException("Incorrect dateTo value.");
         }
     }
 
@@ -122,26 +111,27 @@ public class Vaucher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Vaucher vaucher = (Vaucher) o;
-        return nights == vaucher.nights &&
-                Double.compare(vaucher.totalPrice, totalPrice) == 0 &&
-                country == vaucher.country &&
+        return country.equals(vaucher.country) &&
+                dateFrom.equals(vaucher.dateFrom) &&
+                dateTo.equals(vaucher.dateTo) &&
                 tour.equals(vaucher.tour) &&
-                transport.equals(vaucher.transport) &&
+                transport == vaucher.transport &&
                 hotel.equals(vaucher.hotel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(country, nights, totalPrice, tour, transport, hotel);
+        return Objects.hash(super.hashCode(), country, dateFrom, dateTo, tour, transport, hotel);
     }
 
     @Override
     public String toString() {
         return "Vaucher{" + super.toString() +
-                "country=" + country +
-                ", nights=" + nights +
-                ", totalPrice=" + totalPrice +
+                "country='" + country + '\'' +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
                 ", tour=" + tour +
                 ", transport=" + transport +
                 ", hotel=" + hotel +

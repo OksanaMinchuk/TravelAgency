@@ -1,6 +1,7 @@
 package by.epam.javatr.minchuk.project.service;
 
 import by.epam.javatr.minchuk.project.model.entity.Order;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 
 /**
  * Interface {@code OrderService}
@@ -11,5 +12,5 @@ import by.epam.javatr.minchuk.project.model.entity.Order;
 
 public interface OrderService extends EntityService {
 
-    void cancelOrder (Order order);
+    void cancelOrder (Order order) throws TravelAgencyServiceException;
 }

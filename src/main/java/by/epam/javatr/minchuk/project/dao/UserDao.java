@@ -3,6 +3,8 @@ package by.epam.javatr.minchuk.project.dao;
 import by.epam.javatr.minchuk.project.model.entity.User;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 
+import java.util.List;
+
 /**
  * Interface {@code UserDao}
  *
@@ -12,8 +14,8 @@ import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAg
 
 public interface UserDao extends EntityDao {
 
-    User logIn(String login, String password);
-    void setDiscount(int id, double discount);
-    void setMoney(int id, double money);
+    User logIn(String login, String password) throws TravelAgencyDAOException;
+    void setDiscount(int id, double discount) throws TravelAgencyDAOException;
+    void setMoney(int id, double money) throws TravelAgencyDAOException;
 
 }

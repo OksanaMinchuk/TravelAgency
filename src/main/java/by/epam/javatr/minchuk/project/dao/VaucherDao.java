@@ -1,6 +1,7 @@
 package by.epam.javatr.minchuk.project.dao;
 
 import by.epam.javatr.minchuk.project.model.entity.Vaucher;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ import java.util.List;
 
 public interface VaucherDao extends EntityDao {
 
-    List<Vaucher> getVauchersByCountry(String country);
-    List<Vaucher> getVauchersByTourType(String type);
+    List<Vaucher> getVauchersByCountry(String country) throws TravelAgencyDAOException;
+    List<Vaucher> getVauchersByTourType(String type) throws TravelAgencyDAOException;
 }
