@@ -27,58 +27,82 @@ public class VaucherServiceImpl implements VaucherService {
 
     @Override
     public List<Vaucher> getVauchersByCountry(String country) throws TravelAgencyServiceException {
-        try {
-            List<Vaucher> vauchers = vaucherDao.getVauchersByCountry(country);
-            return vauchers;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (country != null) {
+            try {
+                List<Vaucher> vauchers = vaucherDao.getVauchersByCountry(country);
+                return vauchers;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public List<Vaucher> getVauchersByTourType(String type) throws TravelAgencyServiceException {
-        try {
-            List<Vaucher> vauchers = vaucherDao.getVauchersByCountry(type);
-            return vauchers;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (type != null) {
+            try {
+                List<Vaucher> vauchers = vaucherDao.getVauchersByCountry(type);
+                return vauchers;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void create(Entity entity) throws TravelAgencyServiceException {
-        try {
-            vaucherDao.create(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                vaucherDao.create(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void update(Entity entity) throws TravelAgencyServiceException {
-        try {
-            vaucherDao.update(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                vaucherDao.update(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void delete(int id) throws TravelAgencyServiceException {
-        try {
-            vaucherDao.delete(id);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                vaucherDao.delete(id);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public Entity findById(int id) throws TravelAgencyServiceException {
-        try {
-            Entity vauher = vaucherDao.findById(id);
-            return vauher;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                Entity vauher = vaucherDao.findById(id);
+                return vauher;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 

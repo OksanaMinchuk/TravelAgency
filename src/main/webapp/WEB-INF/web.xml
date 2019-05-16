@@ -7,9 +7,6 @@
 
     <display-name>TravelAgency</display-name>
 
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
@@ -27,19 +24,41 @@
     </servlet-mapping>
 
     <filter>
-        <display-name>EncodingFilter</display-name>
+<!--        <display-name>EncodingFilter</display-name>-->
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.epam.javatr.minchuk.project.controller.filter.EncodingFilter</filter-class>
         <init-param>
-            <param-name>character-encoding</param-name>
-            <param-value>utf-8</param-value>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
         </init-param>
     </filter>
 
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>/Controller</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+<!--    <context-param>-->
+<!--        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>-->
+<!--        <param-value>localisation</param-value>-->
+<!--    </context-param>-->
+
+<!--    <context-param>-->
+<!--        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>-->
+<!--        <param-value>en</param-value>-->
+<!--    </context-param>-->
+
+<!--    <context-param>-->
+<!--        <param-name>locales</param-name>-->
+<!--        <param-value>ru en</param-value>-->
+<!--    </context-param>-->
+
+<!--    <jsp-config>-->
+<!--        <jsp-property-group>-->
+<!--            <url-pattern>*.jsp</url-pattern>-->
+<!--            <page-encoding>UTF-8</page-encoding>-->
+<!--        </jsp-property-group>-->
+<!--    </jsp-config>-->
 
 
 </web-app>

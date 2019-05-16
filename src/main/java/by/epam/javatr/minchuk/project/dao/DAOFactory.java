@@ -1,6 +1,7 @@
 package by.epam.javatr.minchuk.project.dao;
 
 import by.epam.javatr.minchuk.project.dao.impl.*;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 import org.apache.log4j.Logger;
 
 /**
@@ -13,21 +14,15 @@ import org.apache.log4j.Logger;
 
 public class DAOFactory {
 
-    private static final UserDao USER_DAO = new UserDaoImplSql();
-    private static final VaucherDao VAUCHER_DAO = new VaucherDaoImplSql();
-    private static final TourDao TOUR_DAO = new TourDaoImplSql();
-    private static final HotelDao HOTEL_DAO = new HotelDaoImplSql();
-    private static final OrderDao ORDER_DAO = new OrderDaoImplSql();
+    private final UserDao USER_DAO = new UserDaoImplSql();
+    private final VaucherDao VAUCHER_DAO = new VaucherDaoImplSql();
+    private final TourDao TOUR_DAO = new TourDaoImplSql();
+    private final HotelDao HOTEL_DAO = new HotelDaoImplSql();
+    private final OrderDao ORDER_DAO = new OrderDaoImplSql();
 
     private static final DAOFactory instance = new DAOFactory();
-    private static final Logger LOGGER;
-
-    static {
-        LOGGER = Logger.getRootLogger();
-    }
 
     private DAOFactory() {
-        LOGGER.debug("create DAO factory");
     }
 
     public static DAOFactory getInstance() {
@@ -53,4 +48,5 @@ public class DAOFactory {
     public OrderDao getOrderDao() {
         return ORDER_DAO;
     }
+
 }

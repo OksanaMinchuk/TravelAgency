@@ -26,38 +26,54 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void create(Entity entity) throws TravelAgencyServiceException {
-        try {
-            hotelDao.create(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                hotelDao.create(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void update(Entity entity) throws TravelAgencyServiceException {
-        try {
-            hotelDao.update(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                hotelDao.update(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void delete(int id) throws TravelAgencyServiceException {
-        try {
-            hotelDao.delete(id);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                hotelDao.delete(id);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public Entity findById(int id) throws TravelAgencyServiceException {
-        try {
-            Entity hotel = hotelDao.findById(id);
-            return hotel;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                Entity hotel = hotelDao.findById(id);
+                return hotel;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 

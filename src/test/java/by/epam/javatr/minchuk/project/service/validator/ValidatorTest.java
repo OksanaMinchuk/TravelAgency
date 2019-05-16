@@ -1,5 +1,6 @@
 package by.epam.javatr.minchuk.project.service.validator;
 
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 import by.epam.javatr.minchuk.project.service.validator.Validator;
 import org.testng.annotations.Test;
 
@@ -69,6 +70,30 @@ public class ValidatorTest {
     public void testValidateDateNegative() {
         String trueData = "2019-77-09";
         boolean actual = validator.validateDate(trueData);
+        boolean expected = false;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testValidateManey() {
+        Double money = 500.25;
+        boolean actual = validator.validateMoney(money);
+        boolean expected = true;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testValidateUniqeLogin_notExist() throws TravelAgencyServiceException {
+        String login = "newLogin";
+        boolean actual = validator.validateUniqeLogin(login);
+        boolean expected = true;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testValidateUniqeLogin_isExist() throws TravelAgencyServiceException {
+        String login = "login1";
+        boolean actual = validator.validateUniqeLogin(login);
         boolean expected = false;
         assertEquals(actual, expected);
     }

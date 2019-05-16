@@ -55,6 +55,8 @@ public class OrderServiceImpl implements OrderService {
             } catch (TravelAgencyDAOException | TravelAgencyDataWrongException e) {
                 throw new TravelAgencyServiceException(e);
             }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
@@ -70,11 +72,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Entity findById(int id) throws TravelAgencyServiceException {
-        try {
-            Entity order = orderDao.findById(id);
-            return order;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                Entity order = orderDao.findById(id);
+                return order;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 

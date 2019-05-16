@@ -1,5 +1,14 @@
 package by.epam.javatr.minchuk.project.service.validator;
 
+import by.epam.javatr.minchuk.project.model.entity.Entity;
+import by.epam.javatr.minchuk.project.model.entity.User;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
+import by.epam.javatr.minchuk.project.service.ServiceFactory;
+import by.epam.javatr.minchuk.project.service.UserService;
+import by.epam.javatr.minchuk.project.service.impl.UserServiceImpl;
+
+import java.util.List;
+
 /**
  * Class {@code Validator} validates user input data.
  *
@@ -32,6 +41,10 @@ public class Validator {
         return string.matches(NANE_AND_SURNAME_PATTERN);
     }
 
+    public boolean validateMoney (Double money) {
+        return money > 0;
+    }
+
     /**
      * Validate login or password
      * @param string
@@ -48,4 +61,23 @@ public class Validator {
     public boolean validateDate (String string) {
         return string.matches(DATE_PATTERN);
     }
+
+    public boolean validateUniqeLogin (String login) throws TravelAgencyServiceException {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        UserService userService = serviceFactory.getUserService();
+
+        List<Entity> users = userService.findAll();
+        int count = 0;
+        int usersCount = users.size();
+
+        for (int i = 0; i < usersCount; i++) {
+            User user = (User) users.get(i);
+
+            if (user.getLogin().equals(login)) {
+                count++;
+            }
+        }
+        return count == 0;
+    }
+
 }

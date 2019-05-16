@@ -26,47 +26,67 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public void setHotTour(int id, boolean isHot) throws TravelAgencyServiceException {
-        try {
-            tourDao.setHotTour(id, isHot);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                tourDao.setHotTour(id, isHot);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void create(Entity entity) throws TravelAgencyServiceException {
-        try {
-            tourDao.create(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                tourDao.create(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void update(Entity entity) throws TravelAgencyServiceException {
-        try {
-            tourDao.update(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                tourDao.update(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void delete(int id) throws TravelAgencyServiceException {
-        try {
-            tourDao.delete(id);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                tourDao.delete(id);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public Entity findById(int id) throws TravelAgencyServiceException {
-        try {
-            Entity tour = tourDao.findById(id);
-            return tour;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                Entity tour = tourDao.findById(id);
+                return tour;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 

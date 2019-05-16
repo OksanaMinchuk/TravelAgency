@@ -27,13 +27,13 @@ public class UserDaoImplSqlTest {
 
 
     @Test
-    public void testLogIn() {
+    public void testLogIn() throws TravelAgencyDAOException {
         User actualUser = userDao.logIn("login1", "pass1");
         assertEquals(actualUser, user1);
     }
 
     @Test(groups = "databaseChangeTest")
-    public void testSetDiscount() {
+    public void testSetDiscount() throws TravelAgencyDAOException {
         userDao.setDiscount(3, 7);
     }
 
@@ -54,19 +54,19 @@ public class UserDaoImplSqlTest {
     }
 
     @Test(groups = "databaseChangeTest", enabled = false)
-    public void testDelete() {
+    public void testDelete() throws TravelAgencyDAOException {
         userDao.delete(23);
     }
 
     @Test
-    public void testFindById() {
+    public void testFindById() throws TravelAgencyDAOException {
         User expUser = user2;
         User actualUser = (User) userDao.findById(2);
         assertEquals(actualUser, expUser);
     }
 
     @Test(enabled = false)
-    public void testFindAll() {
+    public void testFindAll() throws TravelAgencyDAOException {
         List<Entity> expUsers = new ArrayList<>();
         expUsers.add(user1);
         expUsers.add(user2);

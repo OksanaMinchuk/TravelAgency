@@ -27,66 +27,94 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User logIn(String login, String password) throws TravelAgencyServiceException {
-        try {
-            User user = userDao.logIn(login, password);
-            return  user;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (login != null && password != null) {
+            try {
+                User user = userDao.logIn(login, password);
+                return user;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void setDiscount(int id, double discount) throws TravelAgencyServiceException {
-        try {
-            userDao.setDiscount(id, discount);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0 && discount >= 0) {
+            try {
+                userDao.setDiscount(id, discount);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void setMoney(int id, double money) throws TravelAgencyServiceException {
-        try {
-            userDao.setMoney(id, money);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0 && money >= 0) {
+            try {
+                userDao.setMoney(id, money);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void create(Entity entity) throws TravelAgencyServiceException {
-        try {
-            userDao.create(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                userDao.create(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void update(Entity entity) throws TravelAgencyServiceException {
-        try {
-            userDao.update(entity);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (entity != null) {
+            try {
+                userDao.update(entity);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public void delete(int id) throws TravelAgencyServiceException {
-        try {
-            userDao.delete(id);
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                userDao.delete(id);
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 
     @Override
     public Entity findById(int id) throws TravelAgencyServiceException {
-        try {
-            Entity user = userDao.findById(id);
-            return user;
-        } catch (TravelAgencyDAOException e) {
-            throw new TravelAgencyServiceException(e);
+        if (id > 0) {
+            try {
+                Entity user = userDao.findById(id);
+                return user;
+            } catch (TravelAgencyDAOException e) {
+                throw new TravelAgencyServiceException(e);
+            }
+        } else {
+            throw new TravelAgencyServiceException("Incorrect parameters.");
         }
     }
 

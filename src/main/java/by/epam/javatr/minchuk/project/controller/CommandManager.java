@@ -1,6 +1,6 @@
 package by.epam.javatr.minchuk.project.controller;
 
-import by.epam.javatr.minchuk.project.controller.command.EmptyCommand;
+import by.epam.javatr.minchuk.project.controller.command.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,10 +15,15 @@ import java.util.Map;
 public class CommandManager {
 
     private static CommandManager instance = new CommandManager();
-    private Map<CommandName, Command> commands = new HashMap<>();
+    private Map<CommandContainer, Command> commands = new HashMap<>();
 
     private CommandManager() {
-        commands.put(CommandName.EMPTY_COMMAND, new EmptyCommand());
+        commands.put(CommandContainer.EMPTY_COMMAND, new EmptyCommand());
+        commands.put(CommandContainer.REGISTER, new RegisterUserCommand());
+        commands.put(CommandContainer.LOGIN, new LogInCommand());
+        commands.put(CommandContainer.LOGOUT, new LogOutCommand());
+        commands.put(CommandContainer.TO_REGISTER, new ToRegisterPageCommand());
+        commands.put(CommandContainer.TO_LOGIN, new ToLoginPageCommand());
 //
 //
 //
@@ -30,7 +35,7 @@ public class CommandManager {
     }
 
     public Command getCommand(String commandName) {
-        CommandName command = CommandName.valueOf(commandName.toUpperCase());
+        CommandContainer command = CommandContainer.valueOf(commandName.toUpperCase());
         return commands.get(command);
     }
 }
