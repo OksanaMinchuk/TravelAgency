@@ -10,6 +10,13 @@ import by.epam.javatr.minchuk.project.model.entity.type.TransportType;
 import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyConnectionPoolException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
+import by.epam.javatr.minchuk.project.service.ServiceFactory;
+import by.epam.javatr.minchuk.project.service.UserService;
+import by.epam.javatr.minchuk.project.service.VaucherService;
+import by.epam.javatr.minchuk.project.service.impl.OrderServiceImpl;
+import by.epam.javatr.minchuk.project.service.impl.UserServiceImpl;
+import by.epam.javatr.minchuk.project.service.impl.VaucherServiceImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -60,6 +67,10 @@ public class OrderDaoImplSql implements OrderDao {
             "INNER JOIN hotel ON vaucher.hotel_idhotel = hotel.idhotel\n" +
             "INNER JOIN transport ON vaucher.transport_idtransport = transport.idtransport;";
 
+    private static final String SQL_UPDATE_USER_MONEY_BY_ID = "UPDATE user SET money=? WHERE iduser=?;";
+
+    private static final String SQL_DELETE_VAUCHER_BY_ID = "DELETE FROM vaucher WHERE idvaucher=?;";
+
     private static final Logger LOGGER;
 
     static {
@@ -75,27 +86,32 @@ public class OrderDaoImplSql implements OrderDao {
             ConnectionPool connectionPool = ConnectionPool.getInstance();
             Connection connection = null;
             PreparedStatement ps = null;
+            PreparedStatement psUser = null;
             try {
                 connection = connectionPool.takeConnection();
                 connection.setAutoCommit(false);
                 ps = connection.prepareStatement(SQL_INSERT_ORDER);
                 ps.setInt(1, order.getVaucher().getId());
                 ps.setInt(2, order.getUser().getId());
+                order.setTotalPrice(calculateTotalPrice(order));
                 ps.setDouble(3, order.getTotalPrice());
                 ps.executeUpdate();
 
-                UserDao userDao = DAOFactory.getInstance().getUserDao();
-                userDao.setMoney(order.getUser().getId(), order.getUser().getMoney() - order.getTotalPrice());
+                psUser = connection.prepareStatement(SQL_UPDATE_USER_MONEY_BY_ID);
+                psUser.setDouble(1, (order.getUser().getMoney() - order.getTotalPrice()));
+                psUser.setInt(2, order.getUser().getId());
+                psUser.executeUpdate();
 
                 connection.commit();
 
-            } catch (TravelAgencyConnectionPoolException | SQLException e) {
+            } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
                 LOGGER.error("order registration exception ", e);
                 throw new TravelAgencyDAOException("order registration exception", e);
             } finally {
-                if (ps != null) {
+                if (ps != null || psUser != null) {
                     try {
                         ps.close();
+                        psUser.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
                         throw new TravelAgencyDAOException("database access error occurs", e);
@@ -110,6 +126,33 @@ public class OrderDaoImplSql implements OrderDao {
             throw new TravelAgencyDAOException("entity in method parameter is not instance of order");
         }
     }
+
+    /**
+     * Returns order total price. It depends on tour price and hotel price per day for the entire stay.
+     *
+     * @param order
+     * @return
+     */
+    private double calculateTotalPrice(Order order) {
+        int nights = (int)(order.getVaucher().getDateTo().getTime() - order.getVaucher().getDateFrom().getTime())/(24 * 60 * 60 * 1000);
+        double totalPrice = (nights * order.getVaucher().getHotel().getPricePerDay() + order.getVaucher().getTour().getPrice()) * (100 - order.getUser().getDiscount())/100;
+        return totalPrice;
+    }
+
+//    public static void main(String[] args) throws TravelAgencyServiceException, TravelAgencyDAOException {
+//        OrderServiceImpl orderService = new OrderServiceImpl();
+//        UserServiceImpl userService = new UserServiceImpl();
+//        User user = (User) userService.findById(2);
+//        VaucherServiceImpl vaucherService = new VaucherServiceImpl();
+//        Vaucher vaucher = (Vaucher) vaucherService.findById(1);
+//        Order order = new Order(vaucher, user);
+//        System.out.println(user);
+//        System.out.println(vaucher);
+//
+//        orderService.cancelOrder((Order) orderService.findById(4));
+//        System.out.println(user);
+//        System.out.println(order);
+//    }
 
     @Override
     public void update(Entity entity) {
@@ -129,6 +172,7 @@ public class OrderDaoImplSql implements OrderDao {
             ConnectionPool connectionPool = ConnectionPool.getInstance();
             Connection connection = null;
             PreparedStatement ps = null;
+            PreparedStatement psUser = null;
             try {
                 connection = connectionPool.takeConnection();
                 connection.setAutoCommit(false);
@@ -136,17 +180,20 @@ public class OrderDaoImplSql implements OrderDao {
                 ps.setInt(1, order.getId());
                 ps.executeUpdate();
 
-                UserDao userDao = DAOFactory.getInstance().getUserDao();
-                userDao.setMoney(order.getUser().getId(), order.getUser().getMoney() + order.getTotalPrice());
+                psUser = connection.prepareStatement(SQL_UPDATE_USER_MONEY_BY_ID);
+                psUser.setDouble(1, (order.getUser().getMoney() + order.getTotalPrice()));
+                psUser.setInt(2, order.getUser().getId());
+                psUser.executeUpdate();
 
                 connection.commit();
             } catch (TravelAgencyConnectionPoolException | SQLException e) {
                 LOGGER.error("order delete by ID exception ", e);
                 throw new TravelAgencyDAOException("order delete by ID exception", e);
             } finally {
-                if (ps != null) {
+                if (ps != null || psUser != null) {
                     try {
                         ps.close();
+                        psUser.close();
                     } catch (SQLException e) {
                         LOGGER.error("database access error occurs", e);
                         throw new TravelAgencyDAOException("database access error occurs", e);

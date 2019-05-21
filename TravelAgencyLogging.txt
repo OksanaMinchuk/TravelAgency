@@ -1,8 +1,0 @@
-by.epam.javatr.minchuk.project.dao.impl.UserDaoImplSql.findById(UserDaoImplSql.java:305) 2019-05-12 21:55:51 - start find user by ID
-by.epam.javatr.minchuk.project.dao.connection.ConnectionPool.init(ConnectionPool.java:73) 2019-05-12 21:55:51 - init PoolConnection start
-by.epam.javatr.minchuk.project.dao.connection.ConnectionPool.init(ConnectionPool.java:94) 2019-05-12 21:55:52 - init PoolConnection finish
-by.epam.javatr.minchuk.project.dao.connection.ConnectionPool.takeConnection(ConnectionPool.java:106) 2019-05-12 21:55:52 - takeConnection start
-by.epam.javatr.minchuk.project.dao.connection.ConnectionPool.takeConnection(ConnectionPool.java:117) 2019-05-12 21:55:52 - takeConnection finish
-by.epam.javatr.minchuk.project.dao.connection.ConnectionPool.releaseConnection(ConnectionPool.java:128) 2019-05-12 21:55:52 - releaseConnection start
-by.epam.javatr.minchuk.project.dao.connection.ConnectionPool.releaseConnection(ConnectionPool.java:139) 2019-05-12 21:55:52 - releaseConnection finish
-by.epam.javatr.minchuk.project.dao.impl.UserDaoImplSql.findById(UserDaoImplSql.java:345) 2019-05-12 21:55:52 - finish find user by ID

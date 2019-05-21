@@ -6,6 +6,7 @@ import by.epam.javatr.minchuk.project.model.entity.Entity;
 import by.epam.javatr.minchuk.project.model.entity.Vaucher;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
+import by.epam.javatr.minchuk.project.service.ServiceFactory;
 import by.epam.javatr.minchuk.project.service.VaucherService;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class VaucherServiceImpl implements VaucherService {
     public List<Vaucher> getVauchersByTourType(String type) throws TravelAgencyServiceException {
         if (type != null) {
             try {
-                List<Vaucher> vauchers = vaucherDao.getVauchersByCountry(type);
+                List<Vaucher> vauchers = vaucherDao.getVauchersByTourType(type);
                 return vauchers;
             } catch (TravelAgencyDAOException e) {
                 throw new TravelAgencyServiceException(e);

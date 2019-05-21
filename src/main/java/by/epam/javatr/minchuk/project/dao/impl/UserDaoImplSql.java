@@ -148,9 +148,12 @@ public class UserDaoImplSql implements UserDao {
                 ps.setInt(2, id);
                 ps.executeUpdate();
                 connection.commit();
-            } catch (TravelAgencyConnectionPoolException | SQLException e) {
-                LOGGER.error("user setMoney exception ", e);
-                throw new TravelAgencyDAOException("user setMoney exception ", e);
+            } catch (TravelAgencyConnectionPoolException e) {
+                LOGGER.error("user setMoney exception ConnectionPool ", e);
+                throw new TravelAgencyDAOException("user setMoney exception ", e.getCause());
+            } catch (SQLException e) {
+                LOGGER.error("user setMoney exception SQLException ", e);
+                throw new TravelAgencyDAOException("user setMoney exception ", e.getCause());
             } finally {
                 if (ps != null) {
                     try {

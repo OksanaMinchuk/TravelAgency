@@ -20,6 +20,11 @@ public class Order extends Entity {
     public Order() {
     }
 
+    public Order(Vaucher vaucher, User user) {
+        this.vaucher = vaucher;
+        this.user = user;
+    }
+
     public Order(int id, Vaucher vaucher, User user, Double totalPrice) {
         super(id);
         this.vaucher = vaucher;

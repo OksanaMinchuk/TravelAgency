@@ -1,47 +1,107 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!DOCTYPE html>
 <html>
    <head>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        <title>Home</title>
-       <fmt:setLocale value="${sessionScope.locale}"/>
+        <%@include file="/WEB-INF/jsp/header.jsp" %>
+        <%@include file="/WEB-INF/jsp/include.jsp" %>
+        <style type="text/css"><%@include file="/resources/css/style.css"%></style>
 
-       <fmt:bundle basename="localization">
-           <fmt:message key="locale.index.welcom" var="welcom"/>
-           <fmt:message key="local.index.register" var="register"/>
-           <fmt:message key="local.index.logIn" var="logIn"/>
-           <fmt:message key="local.index.logOut" var="logOut"/>
-       </fmt:bundle>
+        <fmt:setLocale value="${sessionScope.localization}"/>
+        <fmt:setBundle basename="localization.local" var="local"/>
 
+        <fmt:bundle basename="localization">
+           <fmt:message key="local.welcom" var="welcom"/>
+           <fmt:message key="local.register" var="register"/>
+           <fmt:message key="local.logIn" var="logIn"/>
+           <fmt:message key="local.logOut" var="logOut"/>
+           <fmt:message key="local.loginMessage" var="loginMessage"/>
+           <fmt:message key="local.registerMessage" var="registerMessage"/>
+           <fmt:message key="local.en" var="en"/>
+           <fmt:message key="local.ru" var="ru"/>
+           <fmt:message key="local.viewAllVaucher" var="viewAllVaucher"/>
+           <fmt:message key="local.Greece" var="Greece"/>
+           <fmt:message key="local.Poland" var="Poland"/>
+           <fmt:message key="local.Spain" var="Spain"/>
+           <fmt:message key="local.Montenegro" var="Montenegro"/>
+           <fmt:message key="local.Russia" var="Russia"/>
+           <fmt:message key="local.Bulgaria" var="Bulgaria"/>
+           <fmt:message key="local.beach" var="beach"/>
+           <fmt:message key="local.shopping" var="shopping"/>
+           <fmt:message key="local.excursion" var="excursion"/>
+           <fmt:message key="local.fitness" var="fitness"/>
+           <fmt:message key="local.weekend" var="weekend"/>
+        </fmt:bundle>
    </head>
 
-   <body>
+<body>
+<div class="wrapper">
+<div class="content">
+    <div align="center" style="margin-top: 100px; margin-bottom: 150px">
+        <table width=800px border="1"  style="border: 5px ridge DarkBlue">
+            <tr>
+                <td colspan="2">
+                    <div class="locale">
+                        <p style="font-weight: bold">
+                            <a href="${pageContext.request.contextPath}/Controller?command=change_locale&localization=en">${en}</a> |
+                            <a href="${pageContext.request.contextPath}/Controller?command=change_locale&localization=ru">${ru}</a>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p align="center" style="color: DarkBlue; font-weight: bold; font-size: 16px; font-style: italic">
+                                       <a href="Controller?command=view_all_vauchers" class="button">${viewAllVaucher}</a>
+                    </p>
+                    <p align="center" style="color: DarkBlue; font-size: 16px; font-style: italic">
+                                <a href="Controller?command=view_vauchers_by_country&country=Греция" class="button">${Greece}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Польша" class="button">${Poland}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Испания" class="button">${Montenegro}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Черногория" class="button">${Spain}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Россия" class="button">${Russia}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Болгария" class="button">${Bulgaria}</a>
+                    </p>
+                    <p align="center" style="color: DarkBlue; font-size: 16px; font-style: italic">
+                                <a href="Controller?command=view_vauchers_by_tour_type&tourtype=Пляжный отдых" class="button">${beach}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_tour_type&tourtype=Шоппинг" class="button">${shopping}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_tour_type&tourtype=Экскурсия" class="button">${excursion}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_tour_type&tourtype=Фитнес-тур" class="button">${fitness}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_tour_type&tourtype=Тур выходного дня" class="button">${weekend}</a>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="color: DarkBlue; font-weight: bold; font-size: 18px; margin: 10px">${loginMessage}</p>
+                </td>
+                <td>
+                     <form action="Controller" method="GET"  align="center">
+                          <input type="hidden" name="command" value="to_login" />
+                          <button class="btn btn-success" type="submit" href="login">${logIn}</button>
+                     </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="color: DarkBlue; font-weight: bold; font-size: 18px; margin: 10px">${registerMessage}</p>
+                </td>
+                <td>
+                    <form action="Controller" method="GET"  align="center">
+                        <input type="hidden" name="command" value="to_register" />
+                        <button class="btn btn-success" type="submit">${register}</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+</div>
 
- <!--  <form action="Controller" method="GET">
-       <input type="hidden" name="command" value="$register"/>
-       <input type="submit" name="button" value="Посчитать время"/>
-   </form>
-
-   <form action = "Controller" method="post">
-        <input type="submit" name="time" value="Execute"/>
-   </form>
-   -->
-
-   	<div class="buttons">
-   		<form method="GET" action="Controller">
-   			<input type="hidden" name="command" value="to_login" />
-   		    <button class="but" type="submit" href="login">${logIn}</button>
-   		</form>
-
-   		<form method="GET" action="Controller">
-   			<input type="hidden" name="command" value="to_register" />
-   			<input type="hidden" name="toRegistr" value="client" />
-   		    <button class="but" type="submit">${register}</button>
-   		</form>
-   	</div>
-
-   </body>
+<%@ include file="/WEB-INF/jsp/footer.jsp" %>
+</body>
 </html>
+

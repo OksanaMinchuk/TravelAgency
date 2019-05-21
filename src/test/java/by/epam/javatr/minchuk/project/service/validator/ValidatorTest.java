@@ -82,7 +82,7 @@ public class ValidatorTest {
         assertEquals(actual, expected);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testValidateUniqeLogin_notExist() throws TravelAgencyServiceException {
         String login = "newLogin";
         boolean actual = validator.validateUniqeLogin(login);

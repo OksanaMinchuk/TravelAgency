@@ -7,6 +7,9 @@ import by.epam.javatr.minchuk.project.model.entity.type.TransportType;
 import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyConnectionPoolException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
+import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
+import by.epam.javatr.minchuk.project.service.ServiceFactory;
+import by.epam.javatr.minchuk.project.service.VaucherService;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

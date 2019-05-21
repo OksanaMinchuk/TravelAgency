@@ -1,0 +1,414 @@
+2019-05-21 22:08:00 - servlet init
+2019-05-21 22:08:00 - start get method
+2019-05-21 22:08:00 - command: ToLoginPageCommand
+2019-05-21 22:08:00 - start ToLoginPageCommand
+2019-05-21 22:08:00 - finish ToLoginPageCommand
+2019-05-21 22:08:01 - start post method
+2019-05-21 22:08:01 - command: LogInCommand
+2019-05-21 22:08:01 - start LogInCommand
+2019-05-21 22:08:01 - start user logIn
+2019-05-21 22:08:01 - init PoolConnection start
+2019-05-21 22:08:01 - init PoolConnection finish
+2019-05-21 22:08:01 - takeConnection start
+2019-05-21 22:08:01 - takeConnection finish
+2019-05-21 22:08:01 - releaseConnection start
+2019-05-21 22:08:01 - releaseConnection finish
+2019-05-21 22:08:01 - finish user registration
+2019-05-21 22:08:01 - finish LogInCommand
+2019-05-21 22:08:03 - start get method
+2019-05-21 22:08:03 - command: ToChooseVaucherCommand
+2019-05-21 22:08:03 - start ToChooseVaucherCommand
+2019-05-21 22:08:03 - start find all vauchers
+2019-05-21 22:08:03 - takeConnection start
+2019-05-21 22:08:03 - takeConnection finish
+2019-05-21 22:08:03 - releaseConnection start
+2019-05-21 22:08:03 - releaseConnection finish
+2019-05-21 22:08:03 - finish find all vauchers
+2019-05-21 22:08:03 - start find all vauchers
+2019-05-21 22:08:03 - takeConnection start
+2019-05-21 22:08:03 - takeConnection finish
+2019-05-21 22:08:03 - releaseConnection start
+2019-05-21 22:08:03 - releaseConnection finish
+2019-05-21 22:08:03 - finish find all vauchers
+2019-05-21 22:08:03 - start ToChooseVaucherCommand
+2019-05-21 22:08:07 - start get method
+2019-05-21 22:08:07 - command: BookVaucherCommand
+2019-05-21 22:08:07 - start ToChooseVaucherCommand
+2019-05-21 22:08:07 - /*/* id userID- 2-/* id vaucherID-9
+2019-05-21 22:08:07 - start find all vauchers
+2019-05-21 22:08:07 - takeConnection start
+2019-05-21 22:08:07 - takeConnection finish
+2019-05-21 22:08:07 - releaseConnection start
+2019-05-21 22:08:07 - releaseConnection finish
+2019-05-21 22:08:07 - finish find all vauchers
+2019-05-21 22:08:07 - start find vaucher by ID
+2019-05-21 22:08:07 - takeConnection start
+2019-05-21 22:08:07 - takeConnection finish
+2019-05-21 22:08:07 - releaseConnection start
+2019-05-21 22:08:07 - releaseConnection finish
+2019-05-21 22:08:07 - finish find vaucher by ID
+2019-05-21 22:08:07 - start find user by ID
+2019-05-21 22:08:07 - takeConnection start
+2019-05-21 22:08:07 - takeConnection finish
+2019-05-21 22:08:07 - releaseConnection start
+2019-05-21 22:08:07 - releaseConnection finish
+2019-05-21 22:08:07 - finish find user by ID
+2019-05-21 22:08:07 - ----start - user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=5000.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:07 - start order registration
+2019-05-21 22:08:07 - takeConnection start
+2019-05-21 22:08:07 - takeConnection finish
+2019-05-21 22:08:07 - releaseConnection start
+2019-05-21 22:08:07 - releaseConnection finish
+2019-05-21 22:08:07 - finish order registration
+2019-05-21 22:08:07 - ----user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=5000.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:07 - ----vaucher- Vaucher{id=9, country='Черногория', dateFrom=2019-08-16, dateTo=2019-08-28, tour=Tour{id=8, type=Экскурсия, price=380.0, hot=true}, transport=BUS, hotel=Hotel{id=6, name='Отель Palazzo', pricePerDay=80.0}}
+2019-05-21 22:08:07 - ----order- Order{id=0, vaucher=Vaucher{id=9, country='Черногория', dateFrom=2019-08-16, dateTo=2019-08-28, tour=Tour{id=8, type=Экскурсия, price=380.0, hot=true}, transport=BUS, hotel=Hotel{id=6, name='Отель Palazzo', pricePerDay=80.0}}, user=User{id=2, name='Иван', surname='Иванов', discount=0.0, money=5000.0, email='email@mail.ru', login='login', password='password', role=CLIENT}, totalPrice=1340.0}
+2019-05-21 22:08:07 - start ToChooseVaucherCommand
+2019-05-21 22:08:34 - start get method
+2019-05-21 22:08:34 - command: BookVaucherCommand
+2019-05-21 22:08:34 - start ToChooseVaucherCommand
+2019-05-21 22:08:34 - /*/* id userID- 2-/* id vaucherID-5
+2019-05-21 22:08:34 - start find all vauchers
+2019-05-21 22:08:34 - takeConnection start
+2019-05-21 22:08:34 - takeConnection finish
+2019-05-21 22:08:34 - releaseConnection start
+2019-05-21 22:08:34 - releaseConnection finish
+2019-05-21 22:08:34 - finish find all vauchers
+2019-05-21 22:08:34 - start find vaucher by ID
+2019-05-21 22:08:34 - takeConnection start
+2019-05-21 22:08:34 - takeConnection finish
+2019-05-21 22:08:34 - releaseConnection start
+2019-05-21 22:08:34 - releaseConnection finish
+2019-05-21 22:08:34 - finish find vaucher by ID
+2019-05-21 22:08:34 - start find user by ID
+2019-05-21 22:08:34 - takeConnection start
+2019-05-21 22:08:34 - takeConnection finish
+2019-05-21 22:08:34 - releaseConnection start
+2019-05-21 22:08:34 - releaseConnection finish
+2019-05-21 22:08:34 - finish find user by ID
+2019-05-21 22:08:34 - ----start - user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=3660.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:34 - start order registration
+2019-05-21 22:08:34 - takeConnection start
+2019-05-21 22:08:34 - takeConnection finish
+2019-05-21 22:08:34 - releaseConnection start
+2019-05-21 22:08:34 - releaseConnection finish
+2019-05-21 22:08:34 - finish order registration
+2019-05-21 22:08:34 - ----user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=3660.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:34 - ----vaucher- Vaucher{id=5, country='Черногория', dateFrom=2019-08-14, dateTo=2019-08-29, tour=Tour{id=2, type=Фитнес-тур, price=320.0, hot=false}, transport=PLAIN, hotel=Hotel{id=8, name='Гостиница Palm', pricePerDay=35.0}}
+2019-05-21 22:08:34 - ----order- Order{id=0, vaucher=Vaucher{id=5, country='Черногория', dateFrom=2019-08-14, dateTo=2019-08-29, tour=Tour{id=2, type=Фитнес-тур, price=320.0, hot=false}, transport=PLAIN, hotel=Hotel{id=8, name='Гостиница Palm', pricePerDay=35.0}}, user=User{id=2, name='Иван', surname='Иванов', discount=0.0, money=3660.0, email='email@mail.ru', login='login', password='password', role=CLIENT}, totalPrice=845.0}
+2019-05-21 22:08:34 - start ToChooseVaucherCommand
+2019-05-21 22:08:36 - start get method
+2019-05-21 22:08:36 - command: BookVaucherCommand
+2019-05-21 22:08:36 - start ToChooseVaucherCommand
+2019-05-21 22:08:36 - /*/* id userID- 2-/* id vaucherID-7
+2019-05-21 22:08:36 - start find all vauchers
+2019-05-21 22:08:36 - takeConnection start
+2019-05-21 22:08:36 - takeConnection finish
+2019-05-21 22:08:36 - releaseConnection start
+2019-05-21 22:08:36 - releaseConnection finish
+2019-05-21 22:08:36 - finish find all vauchers
+2019-05-21 22:08:36 - start find vaucher by ID
+2019-05-21 22:08:36 - takeConnection start
+2019-05-21 22:08:36 - takeConnection finish
+2019-05-21 22:08:36 - releaseConnection start
+2019-05-21 22:08:36 - releaseConnection finish
+2019-05-21 22:08:36 - finish find vaucher by ID
+2019-05-21 22:08:36 - start find user by ID
+2019-05-21 22:08:36 - takeConnection start
+2019-05-21 22:08:36 - takeConnection finish
+2019-05-21 22:08:36 - releaseConnection start
+2019-05-21 22:08:36 - releaseConnection finish
+2019-05-21 22:08:36 - finish find user by ID
+2019-05-21 22:08:36 - ----start - user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=2815.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:36 - start order registration
+2019-05-21 22:08:36 - takeConnection start
+2019-05-21 22:08:36 - takeConnection finish
+2019-05-21 22:08:36 - releaseConnection start
+2019-05-21 22:08:36 - releaseConnection finish
+2019-05-21 22:08:36 - finish order registration
+2019-05-21 22:08:36 - ----user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=2815.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:36 - ----vaucher- Vaucher{id=7, country='Болгария', dateFrom=2019-07-02, dateTo=2019-07-18, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=BUS, hotel=Hotel{id=7, name='Апартаменты Sea Sail', pricePerDay=32.0}}
+2019-05-21 22:08:36 - ----order- Order{id=0, vaucher=Vaucher{id=7, country='Болгария', dateFrom=2019-07-02, dateTo=2019-07-18, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=BUS, hotel=Hotel{id=7, name='Апартаменты Sea Sail', pricePerDay=32.0}}, user=User{id=2, name='Иван', surname='Иванов', discount=0.0, money=2815.0, email='email@mail.ru', login='login', password='password', role=CLIENT}, totalPrice=922.0}
+2019-05-21 22:08:36 - start ToChooseVaucherCommand
+2019-05-21 22:08:37 - start get method
+2019-05-21 22:08:37 - command: BookVaucherCommand
+2019-05-21 22:08:37 - start ToChooseVaucherCommand
+2019-05-21 22:08:37 - /*/* id userID- 2-/* id vaucherID-8
+2019-05-21 22:08:37 - start find all vauchers
+2019-05-21 22:08:37 - takeConnection start
+2019-05-21 22:08:37 - takeConnection finish
+2019-05-21 22:08:37 - releaseConnection start
+2019-05-21 22:08:37 - releaseConnection finish
+2019-05-21 22:08:37 - finish find all vauchers
+2019-05-21 22:08:37 - start find vaucher by ID
+2019-05-21 22:08:37 - takeConnection start
+2019-05-21 22:08:37 - takeConnection finish
+2019-05-21 22:08:37 - releaseConnection start
+2019-05-21 22:08:37 - releaseConnection finish
+2019-05-21 22:08:37 - finish find vaucher by ID
+2019-05-21 22:08:37 - start find user by ID
+2019-05-21 22:08:37 - takeConnection start
+2019-05-21 22:08:37 - takeConnection finish
+2019-05-21 22:08:37 - releaseConnection start
+2019-05-21 22:08:37 - releaseConnection finish
+2019-05-21 22:08:37 - finish find user by ID
+2019-05-21 22:08:37 - ----start - user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=1893.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:37 - start order registration
+2019-05-21 22:08:37 - takeConnection start
+2019-05-21 22:08:37 - takeConnection finish
+2019-05-21 22:08:37 - releaseConnection start
+2019-05-21 22:08:37 - releaseConnection finish
+2019-05-21 22:08:37 - finish order registration
+2019-05-21 22:08:37 - ----user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=1893.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:37 - ----vaucher- Vaucher{id=8, country='Черногория', dateFrom=2019-08-06, dateTo=2019-08-24, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=BUS, hotel=Hotel{id=6, name='Отель Palazzo', pricePerDay=80.0}}
+2019-05-21 22:08:37 - ----order- Order{id=0, vaucher=Vaucher{id=8, country='Черногория', dateFrom=2019-08-06, dateTo=2019-08-24, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=BUS, hotel=Hotel{id=6, name='Отель Palazzo', pricePerDay=80.0}}, user=User{id=2, name='Иван', surname='Иванов', discount=0.0, money=1893.0, email='email@mail.ru', login='login', password='password', role=CLIENT}, totalPrice=1850.0}
+2019-05-21 22:08:37 - start ToChooseVaucherCommand
+2019-05-21 22:08:38 - start get method
+2019-05-21 22:08:38 - command: BookVaucherCommand
+2019-05-21 22:08:38 - start ToChooseVaucherCommand
+2019-05-21 22:08:38 - /*/* id userID- 2-/* id vaucherID-9
+2019-05-21 22:08:38 - start find all vauchers
+2019-05-21 22:08:38 - takeConnection start
+2019-05-21 22:08:38 - takeConnection finish
+2019-05-21 22:08:38 - releaseConnection start
+2019-05-21 22:08:38 - releaseConnection finish
+2019-05-21 22:08:38 - finish find all vauchers
+2019-05-21 22:08:38 - start find vaucher by ID
+2019-05-21 22:08:38 - takeConnection start
+2019-05-21 22:08:38 - takeConnection finish
+2019-05-21 22:08:38 - releaseConnection start
+2019-05-21 22:08:38 - releaseConnection finish
+2019-05-21 22:08:38 - finish find vaucher by ID
+2019-05-21 22:08:38 - start find user by ID
+2019-05-21 22:08:38 - takeConnection start
+2019-05-21 22:08:38 - takeConnection finish
+2019-05-21 22:08:38 - releaseConnection start
+2019-05-21 22:08:38 - releaseConnection finish
+2019-05-21 22:08:38 - finish find user by ID
+2019-05-21 22:08:38 - ----start - user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=43.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:08:38 - start ToChooseVaucherCommand
+2019-05-21 22:11:25 - servlet destroy
+2019-05-21 22:11:31 - servlet init
+2019-05-21 22:11:31 - start get method
+2019-05-21 22:11:31 - command: ToLoginPageCommand
+2019-05-21 22:11:31 - start ToLoginPageCommand
+2019-05-21 22:11:31 - finish ToLoginPageCommand
+2019-05-21 22:11:34 - start post method
+2019-05-21 22:11:34 - command: LogInCommand
+2019-05-21 22:11:34 - start LogInCommand
+2019-05-21 22:11:34 - start user logIn
+2019-05-21 22:11:34 - init PoolConnection start
+2019-05-21 22:11:34 - init PoolConnection finish
+2019-05-21 22:11:34 - takeConnection start
+2019-05-21 22:11:34 - takeConnection finish
+2019-05-21 22:11:35 - releaseConnection start
+2019-05-21 22:11:35 - releaseConnection finish
+2019-05-21 22:11:35 - finish user registration
+2019-05-21 22:11:35 - finish LogInCommand
+2019-05-21 22:11:36 - start get method
+2019-05-21 22:11:36 - command: ToChooseVaucherCommand
+2019-05-21 22:11:36 - start ToChooseVaucherCommand
+2019-05-21 22:11:36 - start find all vauchers
+2019-05-21 22:11:36 - takeConnection start
+2019-05-21 22:11:36 - takeConnection finish
+2019-05-21 22:11:36 - releaseConnection start
+2019-05-21 22:11:36 - releaseConnection finish
+2019-05-21 22:11:36 - finish find all vauchers
+2019-05-21 22:11:36 - start find all vauchers
+2019-05-21 22:11:36 - takeConnection start
+2019-05-21 22:11:36 - takeConnection finish
+2019-05-21 22:11:36 - releaseConnection start
+2019-05-21 22:11:36 - releaseConnection finish
+2019-05-21 22:11:36 - finish find all vauchers
+2019-05-21 22:11:36 - start ToChooseVaucherCommand
+2019-05-21 22:11:37 - start get method
+2019-05-21 22:11:37 - command: BookVaucherCommand
+2019-05-21 22:11:37 - start ToChooseVaucherCommand
+2019-05-21 22:11:37 - /*/* id userID- 3-/* id vaucherID-10
+2019-05-21 22:11:37 - start find all vauchers
+2019-05-21 22:11:37 - takeConnection start
+2019-05-21 22:11:37 - takeConnection finish
+2019-05-21 22:11:37 - releaseConnection start
+2019-05-21 22:11:37 - releaseConnection finish
+2019-05-21 22:11:37 - finish find all vauchers
+2019-05-21 22:11:37 - start find vaucher by ID
+2019-05-21 22:11:37 - takeConnection start
+2019-05-21 22:11:37 - takeConnection finish
+2019-05-21 22:11:37 - releaseConnection start
+2019-05-21 22:11:37 - releaseConnection finish
+2019-05-21 22:11:37 - finish find vaucher by ID
+2019-05-21 22:11:37 - start find user by ID
+2019-05-21 22:11:37 - takeConnection start
+2019-05-21 22:11:37 - takeConnection finish
+2019-05-21 22:11:37 - releaseConnection start
+2019-05-21 22:11:37 - releaseConnection finish
+2019-05-21 22:11:37 - finish find user by ID
+2019-05-21 22:11:37 - ----start - user- User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=1500.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}
+2019-05-21 22:11:37 - start order registration
+2019-05-21 22:11:37 - takeConnection start
+2019-05-21 22:11:37 - takeConnection finish
+2019-05-21 22:11:37 - releaseConnection start
+2019-05-21 22:11:37 - releaseConnection finish
+2019-05-21 22:11:37 - finish order registration
+2019-05-21 22:11:37 - ----user- User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=1500.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}
+2019-05-21 22:11:37 - ----vaucher- Vaucher{id=10, country='Россия', dateFrom=2019-08-08, dateTo=2019-08-15, tour=Tour{id=8, type=Экскурсия, price=380.0, hot=true}, transport=AUTO, hotel=Hotel{id=1, name='Отель Garden', pricePerDay=42.0}}
+2019-05-21 22:11:37 - ----order- Order{id=0, vaucher=Vaucher{id=10, country='Россия', dateFrom=2019-08-08, dateTo=2019-08-15, tour=Tour{id=8, type=Экскурсия, price=380.0, hot=true}, transport=AUTO, hotel=Hotel{id=1, name='Отель Garden', pricePerDay=42.0}}, user=User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=1500.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}, totalPrice=674.0}
+2019-05-21 22:11:37 - start ToChooseVaucherCommand
+2019-05-21 22:11:59 - start get method
+2019-05-21 22:11:59 - command: BookVaucherCommand
+2019-05-21 22:11:59 - start ToChooseVaucherCommand
+2019-05-21 22:11:59 - /*/* id userID- 3-/* id vaucherID-5
+2019-05-21 22:11:59 - start find all vauchers
+2019-05-21 22:11:59 - takeConnection start
+2019-05-21 22:11:59 - takeConnection finish
+2019-05-21 22:11:59 - releaseConnection start
+2019-05-21 22:11:59 - releaseConnection finish
+2019-05-21 22:11:59 - finish find all vauchers
+2019-05-21 22:11:59 - start find vaucher by ID
+2019-05-21 22:11:59 - takeConnection start
+2019-05-21 22:11:59 - takeConnection finish
+2019-05-21 22:11:59 - releaseConnection start
+2019-05-21 22:11:59 - releaseConnection finish
+2019-05-21 22:11:59 - finish find vaucher by ID
+2019-05-21 22:11:59 - start find user by ID
+2019-05-21 22:11:59 - takeConnection start
+2019-05-21 22:11:59 - takeConnection finish
+2019-05-21 22:11:59 - releaseConnection start
+2019-05-21 22:11:59 - releaseConnection finish
+2019-05-21 22:11:59 - finish find user by ID
+2019-05-21 22:11:59 - ----start - user- User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=826.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}
+2019-05-21 22:11:59 - start ToChooseVaucherCommand
+2019-05-21 22:14:28 - servlet destroy
+2019-05-21 22:14:34 - servlet init
+2019-05-21 22:14:34 - start get method
+2019-05-21 22:14:34 - command: ToLoginPageCommand
+2019-05-21 22:14:34 - start ToLoginPageCommand
+2019-05-21 22:14:34 - finish ToLoginPageCommand
+2019-05-21 22:14:36 - start post method
+2019-05-21 22:14:36 - command: LogInCommand
+2019-05-21 22:14:36 - start LogInCommand
+2019-05-21 22:14:36 - start user logIn
+2019-05-21 22:14:36 - init PoolConnection start
+2019-05-21 22:14:36 - init PoolConnection finish
+2019-05-21 22:14:36 - takeConnection start
+2019-05-21 22:14:36 - takeConnection finish
+2019-05-21 22:14:36 - releaseConnection start
+2019-05-21 22:14:36 - releaseConnection finish
+2019-05-21 22:14:36 - finish user registration
+2019-05-21 22:14:36 - finish LogInCommand
+2019-05-21 22:14:37 - start get method
+2019-05-21 22:14:37 - command: ToChooseVaucherCommand
+2019-05-21 22:14:37 - start ToChooseVaucherCommand
+2019-05-21 22:14:37 - start find all vauchers
+2019-05-21 22:14:37 - takeConnection start
+2019-05-21 22:14:37 - takeConnection finish
+2019-05-21 22:14:37 - releaseConnection start
+2019-05-21 22:14:37 - releaseConnection finish
+2019-05-21 22:14:37 - finish find all vauchers
+2019-05-21 22:14:37 - start find all vauchers
+2019-05-21 22:14:37 - takeConnection start
+2019-05-21 22:14:37 - takeConnection finish
+2019-05-21 22:14:37 - releaseConnection start
+2019-05-21 22:14:37 - releaseConnection finish
+2019-05-21 22:14:37 - finish find all vauchers
+2019-05-21 22:14:37 - start ToChooseVaucherCommand
+2019-05-21 22:14:39 - start get method
+2019-05-21 22:14:39 - command: BookVaucherCommand
+2019-05-21 22:14:39 - start ToChooseVaucherCommand
+2019-05-21 22:14:39 - /*/* id userID- 2-/* id vaucherID-3
+2019-05-21 22:14:39 - start find all vauchers
+2019-05-21 22:14:39 - takeConnection start
+2019-05-21 22:14:39 - takeConnection finish
+2019-05-21 22:14:39 - releaseConnection start
+2019-05-21 22:14:39 - releaseConnection finish
+2019-05-21 22:14:39 - finish find all vauchers
+2019-05-21 22:14:39 - start find vaucher by ID
+2019-05-21 22:14:39 - takeConnection start
+2019-05-21 22:14:39 - takeConnection finish
+2019-05-21 22:14:39 - releaseConnection start
+2019-05-21 22:14:39 - releaseConnection finish
+2019-05-21 22:14:39 - finish find vaucher by ID
+2019-05-21 22:14:39 - start find user by ID
+2019-05-21 22:14:39 - takeConnection start
+2019-05-21 22:14:39 - takeConnection finish
+2019-05-21 22:14:39 - releaseConnection start
+2019-05-21 22:14:39 - releaseConnection finish
+2019-05-21 22:14:39 - finish find user by ID
+2019-05-21 22:14:39 - ----start - user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=3000.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:14:39 - start order registration
+2019-05-21 22:14:39 - takeConnection start
+2019-05-21 22:14:39 - takeConnection finish
+2019-05-21 22:14:39 - releaseConnection start
+2019-05-21 22:14:39 - releaseConnection finish
+2019-05-21 22:14:39 - finish order registration
+2019-05-21 22:14:39 - ----user- User{id=2, name='Иван', surname='Иванов', discount=0.0, money=3000.0, email='email@mail.ru', login='login', password='password', role=CLIENT}
+2019-05-21 22:14:39 - ----vaucher- Vaucher{id=3, country='Испания', dateFrom=2019-06-20, dateTo=2019-06-30, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=PLAIN, hotel=Hotel{id=4, name='Отель Grand', pricePerDay=45.0}}
+2019-05-21 22:14:39 - ----order- Order{id=0, vaucher=Vaucher{id=3, country='Испания', dateFrom=2019-06-20, dateTo=2019-06-30, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=PLAIN, hotel=Hotel{id=4, name='Отель Grand', pricePerDay=45.0}}, user=User{id=2, name='Иван', surname='Иванов', discount=0.0, money=3000.0, email='email@mail.ru', login='login', password='password', role=CLIENT}, totalPrice=860.0}
+2019-05-21 22:14:39 - start ToChooseVaucherCommand
+2019-05-21 22:14:51 - start get method
+2019-05-21 22:14:51 - command: LogOutCommand
+2019-05-21 22:14:51 - start LogOutCommand
+2019-05-21 22:14:51 - finish LogOutCommand
+2019-05-21 22:14:54 - start get method
+2019-05-21 22:14:54 - command: ToLoginPageCommand
+2019-05-21 22:14:54 - start ToLoginPageCommand
+2019-05-21 22:14:54 - finish ToLoginPageCommand
+2019-05-21 22:14:58 - start post method
+2019-05-21 22:14:58 - command: LogInCommand
+2019-05-21 22:14:58 - start LogInCommand
+2019-05-21 22:14:58 - start user logIn
+2019-05-21 22:14:58 - takeConnection start
+2019-05-21 22:14:58 - takeConnection finish
+2019-05-21 22:14:58 - releaseConnection start
+2019-05-21 22:14:58 - releaseConnection finish
+2019-05-21 22:14:58 - finish user registration
+2019-05-21 22:14:58 - finish LogInCommand
+2019-05-21 22:15:00 - start get method
+2019-05-21 22:15:00 - command: ToChooseVaucherCommand
+2019-05-21 22:15:00 - start ToChooseVaucherCommand
+2019-05-21 22:15:00 - start find all vauchers
+2019-05-21 22:15:00 - takeConnection start
+2019-05-21 22:15:00 - takeConnection finish
+2019-05-21 22:15:00 - releaseConnection start
+2019-05-21 22:15:00 - releaseConnection finish
+2019-05-21 22:15:00 - finish find all vauchers
+2019-05-21 22:15:00 - start find all vauchers
+2019-05-21 22:15:00 - takeConnection start
+2019-05-21 22:15:00 - takeConnection finish
+2019-05-21 22:15:00 - releaseConnection start
+2019-05-21 22:15:00 - releaseConnection finish
+2019-05-21 22:15:00 - finish find all vauchers
+2019-05-21 22:15:00 - start ToChooseVaucherCommand
+2019-05-21 22:15:07 - start get method
+2019-05-21 22:15:07 - command: BookVaucherCommand
+2019-05-21 22:15:07 - start ToChooseVaucherCommand
+2019-05-21 22:15:07 - /*/* id userID- 3-/* id vaucherID-7
+2019-05-21 22:15:07 - start find all vauchers
+2019-05-21 22:15:07 - takeConnection start
+2019-05-21 22:15:07 - takeConnection finish
+2019-05-21 22:15:08 - releaseConnection start
+2019-05-21 22:15:08 - releaseConnection finish
+2019-05-21 22:15:08 - finish find all vauchers
+2019-05-21 22:15:08 - start find vaucher by ID
+2019-05-21 22:15:08 - takeConnection start
+2019-05-21 22:15:08 - takeConnection finish
+2019-05-21 22:15:08 - releaseConnection start
+2019-05-21 22:15:08 - releaseConnection finish
+2019-05-21 22:15:08 - finish find vaucher by ID
+2019-05-21 22:15:08 - start find user by ID
+2019-05-21 22:15:08 - takeConnection start
+2019-05-21 22:15:08 - takeConnection finish
+2019-05-21 22:15:08 - releaseConnection start
+2019-05-21 22:15:08 - releaseConnection finish
+2019-05-21 22:15:08 - finish find user by ID
+2019-05-21 22:15:08 - ----start - user- User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=1000.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}
+2019-05-21 22:15:08 - start order registration
+2019-05-21 22:15:08 - takeConnection start
+2019-05-21 22:15:08 - takeConnection finish
+2019-05-21 22:15:08 - releaseConnection start
+2019-05-21 22:15:08 - releaseConnection finish
+2019-05-21 22:15:08 - finish order registration
+2019-05-21 22:15:08 - ----user- User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=1000.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}
+2019-05-21 22:15:08 - ----vaucher- Vaucher{id=7, country='Болгария', dateFrom=2019-07-02, dateTo=2019-07-18, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=BUS, hotel=Hotel{id=7, name='Апартаменты Sea Sail', pricePerDay=32.0}}
+2019-05-21 22:15:08 - ----order- Order{id=0, vaucher=Vaucher{id=7, country='Болгария', dateFrom=2019-07-02, dateTo=2019-07-18, tour=Tour{id=1, type=Пляжный отдых, price=410.0, hot=false}, transport=BUS, hotel=Hotel{id=7, name='Апартаменты Sea Sail', pricePerDay=32.0}}, user=User{id=3, name='Олег', surname='Сидоров', discount=0.0, money=1000.0, email='oleg@mail.ru', login='login1', password='password', role=CLIENT}, totalPrice=922.0}
+2019-05-21 22:15:08 - start ToChooseVaucherCommand

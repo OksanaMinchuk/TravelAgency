@@ -33,26 +33,25 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    /**
-     * Returns order total price. It depends on tour price and hotel price per day for the entire stay.
-     *
-     * @param order
-     * @return
-     */
-    private double calculateTotalPrice(Order order) {
-        int nights = (int)(order.getVaucher().getDateTo().getTime() - order.getVaucher().getDateFrom().getTime())/(24 * 60 * 60 * 1000);
-        double totalPrice = nights * order.getVaucher().getHotel().getPricePerDay() + order.getVaucher().getTour().getPrice();
-        return totalPrice;
-    }
+//    /**
+//     * Returns order total price. It depends on tour price and hotel price per day for the entire stay.
+//     *
+//     * @param order
+//     * @return
+//     */
+//    private double calculateTotalPrice(Order order) {
+//        int nights = (int)(order.getVaucher().getDateTo().getTime() - order.getVaucher().getDateFrom().getTime())/(24 * 60 * 60 * 1000);
+//        double totalPrice = nights * order.getVaucher().getHotel().getPricePerDay() + order.getVaucher().getTour().getPrice();
+//        return totalPrice;
+//    }
 
     @Override
     public void create(Entity entity) throws TravelAgencyServiceException {
         if (entity instanceof Order) {
             Order order = (Order) entity;
             try {
-                order.setTotalPrice(calculateTotalPrice(order));
                 orderDao.create(order);
-            } catch (TravelAgencyDAOException | TravelAgencyDataWrongException e) {
+            } catch (TravelAgencyDAOException  e) {
                 throw new TravelAgencyServiceException(e);
             }
         } else {
