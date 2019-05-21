@@ -35,22 +35,18 @@ public class Controller extends HttpServlet {
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LOGGER.debug("start get method");
         processRequest(request, response);
-//        response.setContentType("text/html");
-//        response.getWriter().print("This is " + this.getClass().getName() + ", using the GET method");
     }
 
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        LOGGER.debug("start post methodd");
+        LOGGER.debug("start post method");
         processRequest(request, response);
-//        response.setContentType("text/html");
-//        response.getWriter().print("This is " + this.getClass().getName() + ", using the Post method");
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String commandName = request.getParameter(COMMAND);
 
         Command command = CommandManager.getInstance().getCommand(commandName);
-        LOGGER.debug("command: " + command);
+        LOGGER.debug("command: " + command.getClass().getSimpleName());
 
         String page = command.execute(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
@@ -69,5 +65,4 @@ public class Controller extends HttpServlet {
         LOGGER.debug("servlet destroy");
         super.destroy();
     }
-
 }

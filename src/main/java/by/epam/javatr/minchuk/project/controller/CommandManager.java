@@ -24,6 +24,14 @@ public class CommandManager {
         commands.put(CommandContainer.LOGOUT, new LogOutCommand());
         commands.put(CommandContainer.TO_REGISTER, new ToRegisterPageCommand());
         commands.put(CommandContainer.TO_LOGIN, new ToLoginPageCommand());
+        commands.put(CommandContainer.RU, new ChangeLocale());
+        commands.put(CommandContainer.EN, new ChangeLocale());
+        commands.put(CommandContainer.CHANGE_LOCALE, new ChangeLocale());
+        commands.put(CommandContainer.VIEW_ALL_VAUCHERS, new ViewAllVauchers());
+        commands.put(CommandContainer.VIEW_VAUCHERS_BY_COUNTRY, new ViewVauchersByCountry());
+        commands.put(CommandContainer.VIEW_VAUCHERS_BY_TOUR_TYPE, new ViewVauchersByTourType());
+        commands.put(CommandContainer.CHOOSE_VAUCHER, new ToChooseVaucherCommand());
+        commands.put(CommandContainer.BOOK_VAUCHER, new BookVaucherCommand());
 //
 //
 //

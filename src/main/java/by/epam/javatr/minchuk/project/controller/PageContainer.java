@@ -15,4 +15,6 @@ public class PageContainer {
     public static final String USER_MENU_PAGE = "WEB-INF/jsp/user_menu.jsp";
     public static final String ADMIN_MENU_PAGE = "WEB-INF/jsp/admin_menu.jsp";
     public static final String ERROR_PAGE = "WEB-INF/jsp/error.jsp";
+    public static final String VIEW_ALL_VAUCHERS = "WEB-INF/jsp/view_all_vauchers.jsp";
+    public static final String FINISH_ORDER = "WEB-INF/jsp/finish_order.jsp";
 }

@@ -1,7 +1,5 @@
 package by.epam.javatr.minchuk.project.controller;
 
-import by.epam.javatr.minchuk.project.controller.command.EmptyCommand;
-
 /**
  * Class {@code CommandContainer}
  *
@@ -17,7 +15,13 @@ public enum CommandContainer {
     LOGOUT,
     TO_REGISTER,
     TO_LOGIN,
-    CHANGE_LOCAL;
-
+    RU,
+    EN,
+    CHANGE_LOCALE,
+    VIEW_ALL_VAUCHERS,
+    VIEW_VAUCHERS_BY_COUNTRY,
+    VIEW_VAUCHERS_BY_TOUR_TYPE,
+    CHOOSE_VAUCHER,
+    BOOK_VAUCHER,
 
 }
