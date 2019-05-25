@@ -6,6 +6,7 @@ import by.epam.javatr.minchuk.project.model.entity.Entity;
 import by.epam.javatr.minchuk.project.model.entity.Order;
 import by.epam.javatr.minchuk.project.model.entity.User;
 import by.epam.javatr.minchuk.project.model.entity.Vaucher;
+import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 import by.epam.javatr.minchuk.project.service.OrderService;
@@ -17,6 +18,13 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Class {@code BookVaucherCommand}
+ *
+ * @author Oksana Minchuk
+ * @version 1.0 25/05/2019
+ */
+
 public class BookVaucherCommand implements Command {
 
     private static final Logger LOGGER;
@@ -27,7 +35,7 @@ public class BookVaucherCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOGGER.debug("start ToChooseVaucherCommand");
+        LOGGER.debug("start BookVaucherCommand");
 
         String page;
 
@@ -37,28 +45,34 @@ public class BookVaucherCommand implements Command {
         UserService userService = factory.getUserService();
 
         String vaucherID = request.getParameter("idvaucher");
-        String userID = request.getSession().getAttribute("id").toString();
-
-
+        LOGGER.debug("vaucherID: " + vaucherID);
+        String userID = request.getParameter("id");
+        LOGGER.debug("userID: " + userID);
         List<Entity> vauchers;
-        //HttpSession session = request.getSession(true);
 
-        LOGGER.debug("/*/* id userID- " + userID + "-/* id vaucherID-" + vaucherID);
-
+        Order order = null;
 
         try {
             vauchers = vaucherService.findAll();
+
             Vaucher vaucher = (Vaucher) vaucherService.findById(Integer.parseInt(vaucherID));
+            LOGGER.debug("vaucher: " + vaucher);
             User user = (User) userService.findById(Integer.parseInt(userID));
-            LOGGER.debug("----start - user- " + user);
-            Order order = new Order(vaucher, user);
+            LOGGER.debug("user: " + user);
+
+            order = new Order();
             double totalPrice = calculateTotalPrice(vaucher, user);
 
             if (user.getMoney() >= totalPrice) {
+                try {
+                    order.setUser(user);
+                    order.setVaucher(vaucher);
+                } catch (TravelAgencyDataWrongException e) {
+                    e.printStackTrace();
+                }
                 orderService.create(order);
-                LOGGER.debug("----user- " + user);
-                LOGGER.debug("----vaucher- " + vaucher);
-                LOGGER.debug("----order- " + order);
+
+                LOGGER.debug("order: " + order);
 
                 request.setAttribute("vauchers", vauchers);
 
@@ -74,18 +88,28 @@ public class BookVaucherCommand implements Command {
             }
 
         } catch (TravelAgencyDAOException e) {
-            LOGGER.error("LogInCommand error.", e);
+            LOGGER.error("BookVaucherCommand error.", e);
             page = PageContainer.ERROR_PAGE;
 
         } catch (TravelAgencyServiceException e) {
-            LOGGER.error("LogInCommand error.", e);
+            LOGGER.error("BookVaucherCommand error.", e);
+            page = PageContainer.ERROR_PAGE;
+
+        } catch (NumberFormatException e) {
+            LOGGER.error("BookVaucherCommand error.", e);
+            request.setAttribute("error", "Create order, please.");
             page = PageContainer.ERROR_PAGE;
         }
-
-        LOGGER.debug("start ToChooseVaucherCommand");
+        LOGGER.debug("finish BookVaucherCommand: " + order);
         return page;
     }
 
+    /**
+     *
+     * @param vaucher
+     * @param user
+     * @return
+     */
     private double calculateTotalPrice(Vaucher vaucher, User user) {
         int nights = (int)(vaucher.getDateTo().getTime() - vaucher.getDateFrom().getTime())/(24 * 60 * 60 * 1000);
         double totalPrice = (nights * vaucher.getHotel().getPricePerDay() + vaucher.getTour().getPrice())*(100 - user.getDiscount())/100;

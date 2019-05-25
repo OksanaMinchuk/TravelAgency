@@ -32,10 +32,11 @@ public class CommandManager {
         commands.put(CommandContainer.VIEW_VAUCHERS_BY_TOUR_TYPE, new ViewVauchersByTourType());
         commands.put(CommandContainer.CHOOSE_VAUCHER, new ToChooseVaucherCommand());
         commands.put(CommandContainer.BOOK_VAUCHER, new BookVaucherCommand());
-//
-//
-//
-//
+        commands.put(CommandContainer.CONTINUE, new ContinueRegistrCommand());
+        commands.put(CommandContainer.VIEW_ACCOUNT, new ViewAccountCommand());
+        commands.put(CommandContainer.UPDATE_BALANCE, new UpdateBalanceCommand());
+        commands.put(CommandContainer.TO_USER_MENU, new ToUserMenu());
+
     }
 
     public static CommandManager getInstance() {

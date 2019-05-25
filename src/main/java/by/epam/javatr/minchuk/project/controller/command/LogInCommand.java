@@ -37,17 +37,19 @@ public class LogInCommand implements Command {
         ServiceFactory factory = ServiceFactory.getInstance();
         UserService userService = factory.getUserService();
         HttpSession session = request.getSession(true);
-
+        User user = null;
         try {
-            User user = userService.logIn(login, password);
+            user = userService.logIn(login, password);
 
             if (user != null) {
                 request.setAttribute("user", user);
+                session.setAttribute("user", user);
                 session.setAttribute("id", user.getId());
                 session.setAttribute("name", user.getName());
                 session.setAttribute("surname", user.getSurname());
                 session.setAttribute("money", user.getMoney());
                 session.setAttribute("email", user.getEmail());
+                session.setAttribute("login", user.getLogin());
                 session.setAttribute("userRole", user.getRole());
 
                 if (user.getRole().toString().equals("CLIENT")) {
@@ -63,7 +65,7 @@ public class LogInCommand implements Command {
             LOGGER.error("LogInCommand error.", e);
             page = PageContainer.ERROR_PAGE;
         }
-        LOGGER.debug("finish LogInCommand");
+        LOGGER.debug("finish LogInCommand: " + user);
         return page;
     }
 }

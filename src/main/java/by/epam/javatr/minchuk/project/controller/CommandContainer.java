@@ -23,5 +23,10 @@ public enum CommandContainer {
     VIEW_VAUCHERS_BY_TOUR_TYPE,
     CHOOSE_VAUCHER,
     BOOK_VAUCHER,
+    CANCEL_ORDER,
+    CONTINUE,
+    VIEW_ACCOUNT,
+    UPDATE_BALANCE,
+    TO_USER_MENU,
 
 }

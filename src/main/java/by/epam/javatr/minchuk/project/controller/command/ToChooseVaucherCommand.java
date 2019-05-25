@@ -60,7 +60,7 @@ public class ToChooseVaucherCommand implements Command {
                     }
                 }
             }
-            //calculate vaucher total price and creat array
+            //calculate vaucher total price and create array
             for (int i = 0; i < vauchers.size(); i++) {
                 vaucherPrice.add(calculateVaucherTotalPrice((Vaucher) vauchers.get(i)));
             }

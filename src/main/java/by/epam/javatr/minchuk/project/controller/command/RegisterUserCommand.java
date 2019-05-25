@@ -33,15 +33,17 @@ public class RegisterUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         LOGGER.debug("start RegisterUserCommand");
-        String page;
+
         HttpSession session = request.getSession(true);
+        User user = null;
+        String page;
         if (validate(request)) {
             LOGGER.debug(request.getParameter("roleUser"));
             Validator validator = Validator.getInstance();
 
             try {
                 if (validator.validateUniqeLogin(request.getParameter("login"))) {
-                    User user = new User();
+                    user = new User();
                     user.setName(request.getParameter("name"));
                     user.setSurname(request.getParameter("surname"));
                     user.setMoney(Double.parseDouble(request.getParameter("money")));
@@ -58,13 +60,10 @@ public class RegisterUserCommand implements Command {
                         userService.create(user);
                         if (user != null) {
                             request.setAttribute("user", user);
-                            session.setAttribute("user", user.getName());
+                            request.setAttribute("name", user.getName());
+                            request.getSession().setAttribute("user", user);
                         }
-                        if (role.equals("client")) {
-                            page = PageContainer.USER_MENU_PAGE;
-                        } else {
-                            page = PageContainer.ADMIN_MENU_PAGE;
-                        }
+                    page = PageContainer.RESULT_REGISTER_PAGE;
                 } else {
                     session.setAttribute("error", "Login is not uniqe. Please try again.");
                     page = PageContainer.ERROR_PAGE;
@@ -83,7 +82,7 @@ public class RegisterUserCommand implements Command {
             session.setAttribute("error", "The data entered is not correct. Please try again.");
             page = PageContainer.ERROR_PAGE;
         }
-        LOGGER.debug("finish RegisterUserCommand");
+        LOGGER.debug("finish RegisterUserCommand" + user);
         return page;
     }
 
