@@ -28,6 +28,8 @@
            <fmt:message key="local.chooseVaucher" var="chooseVaucher"/>
            <fmt:message key="local.priceColumn" var="priceColumn"/>
            <fmt:message key="local.book" var="book"/>
+           <fmt:message key="local.send" var="send"/>
+           <fmt:message key="local.account" var="account"/>
         </fmt:bundle>
 
    </head>
@@ -35,25 +37,38 @@
    <body>
     <form action="Controller" method="GET"  align="center" style="margin: 15px">
          <input type="hidden" name="command" value="logout" />
-         <input type="submit" class="btn btn-success" value="${logOut}"/>
+         <input type="submit" class="btn btn-warning" value="${logOut}"/>
     </form>
-
 
         <div align="center">
             <table width=800px border="1"  style="border: 3px ridge DarkBlue">
                 <tr>
-                    <td colspan="2">
+                    <td>
                         <p align="center" style="color: DarkBlue; font-weight: bold; font-size: 16px; font-style: italic">
                                 <a href="Controller?command=choose_vaucher" class="button">${chooseVaucher}</a>
                         </p>
                     </td>
+                    <td>
+                        <p align="center" style="color: DarkBlue; font-weight: bold; font-size: 16px; font-style: italic">
+                             <a href="Controller?command=choose_vaucher" class="button">${chooseVaucher}</a>
+                        </p>
+                    </td>
+                     <td>
+                         <p align="center" style="color: DarkBlue; font-weight: bold; font-size: 16px; font-style: italic">
+                               <a href="Controller?command=view_account" class="button">${account}</a>
+                         </p>
+                     </td>
                 </tr>
             </table>
          </div>
 
+<!-- VAUCHER ORDER TABLE -->
 <div align="center" style="margin-top: 5px; margin-bottom: 5px">
+<form action="Controller" method="post">
+<input type="hidden" name="command" value="book_vaucher" />
+<input type="hidden" name="id" value="${sessionScope.id}" />
 <table>
-<tr>
+    <tr>
         <td>
             <table border="1"  style="border: 3px ridge DarkBlue">
             <tr align="center" style="font-weight: bold">
@@ -69,7 +84,7 @@
                <td>${transport}</td>
            </tr>
            <c:forEach var="vaucher" items="${vauchers}" varStatus="status">
-               <tr>
+               <tr height="39">
                    <td><c:out value="${status.count}"/></td>
                    <td><c:out value="${vaucher.country}"/></td>
                    <td><c:out value="${vaucher.dateFrom}"/></td>
@@ -91,8 +106,8 @@
                 <td>${priceColumn}</td>
            </tr>
            <c:forEach var="vaucherPrice" items="${vaucherPrice}">
-           <tr>
-                <td><c:out value="${vaucherPrice}"/></td>
+           <tr height="39" align="center">
+                <td style="margin: 5px"><c:out value="${vaucherPrice}"/></td>
             </tr>
             </c:forEach>
            </table>
@@ -102,17 +117,23 @@
            <tr align="center" style="font-weight: bold;">
                 <td>${book}</td>
            </tr>
+
            <c:forEach var="vaucher" items="${vauchers}">
            <tr>
-                <td><a href="Controller?command=book_vaucher&idvaucher=${vaucher.id}" >${book}</a></td>
+                <td>
+                    <label><input type="radio" name="idvaucher" value="${vaucher.id}">${book}</label>
+                </td>
             </tr>
             </c:forEach>
            </table>
        </td>
-</tr>
+    </tr>
 </table>
+    <div align="middle" style="margin-top: 10px">
+        <input type="submit" class="btn btn-success" value="${send}"/>
+   </div>
+</form>
 </div>
-
 
 <div style="margin-bottom: 400px">
     <h3 style="color: red; font-weight: bold">${notEnouthMoneyMessage}</h3>

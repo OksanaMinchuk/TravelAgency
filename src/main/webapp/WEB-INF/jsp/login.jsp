@@ -40,7 +40,6 @@
                     <td><input type="submit" class="btn btn-success" value="${send}"/></td>
               </tr>
               </table>
-
         </form>
    </div>
    </div>
