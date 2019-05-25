@@ -324,7 +324,7 @@ public class VaucherDaoImplSql implements VaucherDao {
 
     @Override
     public Entity findById(int id) throws TravelAgencyDAOException {
-        LOGGER.debug("start find vaucher by ID");
+        LOGGER.debug("start find vaucher by ID: " + id);
         Vaucher vaucher = null;
 
         if (id > 0) {
@@ -376,7 +376,7 @@ public class VaucherDaoImplSql implements VaucherDao {
                 if (connectionPool != null) {
                     connectionPool.releaseConnection(connection);
                 }
-                LOGGER.debug("finish find vaucher by ID");
+                LOGGER.debug("finish find vaucher by ID: " + vaucher);
             }
         }
         return vaucher;

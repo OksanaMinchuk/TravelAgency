@@ -60,8 +60,8 @@
                     <p align="center" style="color: DarkBlue; font-size: 16px; font-style: italic">
                                 <a href="Controller?command=view_vauchers_by_country&country=Греция" class="button">${Greece}</a><a> * </a>
                                 <a href="Controller?command=view_vauchers_by_country&country=Польша" class="button">${Poland}</a><a> * </a>
-                                <a href="Controller?command=view_vauchers_by_country&country=Испания" class="button">${Montenegro}</a><a> * </a>
-                                <a href="Controller?command=view_vauchers_by_country&country=Черногория" class="button">${Spain}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Испания" class="button">${Spain}</a><a> * </a>
+                                <a href="Controller?command=view_vauchers_by_country&country=Черногория" class="button">${Montenegro}</a><a> * </a>
                                 <a href="Controller?command=view_vauchers_by_country&country=Россия" class="button">${Russia}</a><a> * </a>
                                 <a href="Controller?command=view_vauchers_by_country&country=Болгария" class="button">${Bulgaria}</a>
                     </p>
@@ -81,7 +81,7 @@
                 <td>
                      <form action="Controller" method="GET"  align="center">
                           <input type="hidden" name="command" value="to_login" />
-                          <button class="btn btn-success" type="submit" href="login">${logIn}</button>
+                          <button class="btn btn-success" type="submit">${logIn}</button>
                      </form>
                 </td>
             </tr>
