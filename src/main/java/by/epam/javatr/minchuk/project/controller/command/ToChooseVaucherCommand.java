@@ -4,7 +4,6 @@ import by.epam.javatr.minchuk.project.controller.Command;
 import by.epam.javatr.minchuk.project.controller.PageContainer;
 import by.epam.javatr.minchuk.project.model.entity.Entity;
 import by.epam.javatr.minchuk.project.model.entity.Order;
-import by.epam.javatr.minchuk.project.model.entity.User;
 import by.epam.javatr.minchuk.project.model.entity.Vaucher;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 import by.epam.javatr.minchuk.project.service.OrderService;
@@ -14,9 +13,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Class {@code ToChooseVaucherCommand} allows to see available vauchers
@@ -68,10 +65,8 @@ public class ToChooseVaucherCommand implements Command {
             if (!vauchers.isEmpty()) {
                 request.setAttribute("vauchers", vauchers);
                 request.setAttribute("vaucherPrice", vaucherPrice);
-                page = PageContainer.USER_MENU_PAGE;
             } else {
-                request.setAttribute("error", "Vauchers not found");
-                page = PageContainer.USER_MENU_PAGE;
+                request.setAttribute("errorUserMenu", "Vauchers not found");
             }
             request.setAttribute("vauchers", vauchers);
             page = PageContainer.USER_MENU_PAGE;

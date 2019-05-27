@@ -28,5 +28,8 @@ public enum CommandContainer {
     VIEW_ACCOUNT,
     UPDATE_BALANCE,
     TO_USER_MENU,
+    SHOW_ORDER_BY_USER_ID,
+    UPDATE_TOUR,
+    ADD_VAUCHER,
 
 }

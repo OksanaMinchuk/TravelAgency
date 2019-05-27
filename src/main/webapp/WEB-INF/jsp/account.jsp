@@ -34,7 +34,7 @@
            <input type="submit" class="btn btn-warning" value="${logOut}"/>
       </form>
 
-           <div align="center" style="margin-top: 15px; margin-bottom: 150px">
+           <div align="center" style="margin-top: 15px; margin-bottom: 170px">
                <table width=600px border="1"  style="border: 3px ridge DarkBlue" >
                    <tr align="center" style="color: DarkBlue; font-weight: bold; font-size: 16px; font-style: italic">
                        <td><p>${name}</p></td>

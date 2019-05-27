@@ -1,8 +1,6 @@
 package by.epam.javatr.minchuk.project.dao.impl;
 
-import by.epam.javatr.minchuk.project.dao.DAOFactory;
 import by.epam.javatr.minchuk.project.dao.OrderDao;
-import by.epam.javatr.minchuk.project.dao.UserDao;
 import by.epam.javatr.minchuk.project.dao.connection.ConnectionPool;
 import by.epam.javatr.minchuk.project.model.entity.*;
 import by.epam.javatr.minchuk.project.model.entity.type.RoleType;
@@ -10,13 +8,7 @@ import by.epam.javatr.minchuk.project.model.entity.type.TransportType;
 import by.epam.javatr.minchuk.project.model.exception.logicexeption.TravelAgencyDataWrongException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyConnectionPoolException;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyDAOException;
-import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
-import by.epam.javatr.minchuk.project.service.ServiceFactory;
-import by.epam.javatr.minchuk.project.service.UserService;
-import by.epam.javatr.minchuk.project.service.VaucherService;
-import by.epam.javatr.minchuk.project.service.impl.OrderServiceImpl;
-import by.epam.javatr.minchuk.project.service.impl.UserServiceImpl;
-import by.epam.javatr.minchuk.project.service.impl.VaucherServiceImpl;
+
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -52,6 +44,23 @@ public class OrderDaoImplSql implements OrderDao {
             "INNER JOIN hotel ON vaucher.hotel_idhotel = hotel.idhotel\n" +
             "INNER JOIN transport ON vaucher.transport_idtransport = transport.idtransport \n" +
             "WHERE idorder_history = ?;";
+
+    private static final String SQL_SELECT_ORDER_BY_USER_ID
+            = "SELECT idorder_history, idvaucher, country, dateFrom, dateTo,\n" +
+            "tour.idtour, tour.type, tour.price, tour.hot,\n" +
+            "hotel.idhotel, hotel.name_hotel, hotel.pricePerDay, \n" +
+            "transport.transport_type,\n" +
+            "user.iduser, user.name, user.surname, \n" +
+            "user.discount, user.money, user.email, user.login, user.password, user.role_idrole,\n" +
+            "order_history.totalPrice\n" +
+            "FROM order_history \n" +
+            "INNER JOIN vaucher ON order_history.vaucher_idvaucher = vaucher.idvaucher\n" +
+            "INNER JOIN user ON order_history.user_iduser = user.iduser\n" +
+            "INNER JOIN tour ON vaucher.tour_idtour = tour.idtour \n" +
+            "INNER JOIN hotel ON vaucher.hotel_idhotel = hotel.idhotel\n" +
+            "INNER JOIN transport ON vaucher.transport_idtransport = transport.idtransport \n" +
+            "WHERE user_iduser = ?;";
+
     private static final String SQL_SELECT_ALL_ORDER
             = "SELECT idorder_history, idvaucher, country, dateFrom, dateTo,\n" +
             "tour.idtour, tour.type, tour.price, tour.hot, \n" +
@@ -138,21 +147,6 @@ public class OrderDaoImplSql implements OrderDao {
         double totalPrice = (nights * order.getVaucher().getHotel().getPricePerDay() + order.getVaucher().getTour().getPrice()) * (100 - order.getUser().getDiscount())/100;
         return totalPrice;
     }
-
-//    public static void main(String[] args) throws TravelAgencyServiceException, TravelAgencyDAOException {
-//        OrderServiceImpl orderService = new OrderServiceImpl();
-//        UserServiceImpl userService = new UserServiceImpl();
-//        User user = (User) userService.findById(2);
-//        VaucherServiceImpl vaucherService = new VaucherServiceImpl();
-//        Vaucher vaucher = (Vaucher) vaucherService.findById(1);
-//        Order order = new Order(vaucher, user);
-//        System.out.println(user);
-//        System.out.println(vaucher);
-//
-//        orderService.cancelOrder((Order) orderService.findById(4));
-//        System.out.println(user);
-//        System.out.println(order);
-//    }
 
     @Override
     public void update(Entity entity) {
@@ -359,4 +353,85 @@ public class OrderDaoImplSql implements OrderDao {
         }
         return orders;
     }
+
+    @Override
+    public List<Entity> findByUserId(int userId) throws TravelAgencyDAOException {
+        LOGGER.debug("start find order by userId");
+        Order order = null;
+        List<Entity> ordersByUserId = new ArrayList<>();
+
+        if (userId > 0) {
+            ConnectionPool connectionPool = ConnectionPool.getInstance();
+            Connection connection = null;
+            ResultSet rs = null;
+            PreparedStatement ps = null;
+            try {
+                connection = connectionPool.takeConnection();
+                ps = connection.prepareStatement(SQL_SELECT_ORDER_BY_USER_ID);
+                ps.setInt(1, userId);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    order = new Order();
+                    order.setId(rs.getInt(1));
+
+                    Vaucher vaucher = new Vaucher();
+                    vaucher.setId(rs.getInt(2));
+                    vaucher.setCountry(rs.getString(3));
+                    vaucher.setDateFrom(rs.getDate(4));
+                    vaucher.setDateTo(rs.getDate(5));
+
+                    Tour tour = new Tour();
+                    tour.setId(rs.getInt(6));
+                    tour.setType(rs.getString(7));
+                    tour.setPrice(rs.getDouble(8));
+                    tour.setHot(rs.getBoolean(9));
+
+                    Hotel hotel = new Hotel();
+                    hotel.setId(rs.getInt(10));
+                    hotel.setName(rs.getString(11));
+                    hotel.setPricePerDay(rs.getDouble(12));
+
+                    vaucher.setTransport(TransportType.valueOf(rs.getString(13)));
+
+                    vaucher.setTour(tour);
+                    vaucher.setHotel(hotel);
+
+                    User user = new User();
+                    user.setId(rs.getInt(14));
+                    user.setName(rs.getString(15));
+                    user.setSurname(rs.getString(16));
+                    user.setDiscount(rs.getDouble(17));
+                    user.setMoney(rs.getDouble(18));
+                    user.setEmail(rs.getString(19));
+                    user.setLogin(rs.getString(20));
+                    user.setPassword(rs.getString(21));
+                    user.setRole(RoleType.getValue(rs.getInt(22)));
+
+                    order.setVaucher(vaucher);
+                    order.setUser(user);
+                    order.setTotalPrice(rs.getDouble(23));
+
+                    ordersByUserId.add(order);
+                }
+            } catch (TravelAgencyConnectionPoolException | SQLException | TravelAgencyDataWrongException e) {
+                LOGGER.error("order find by userId exception ", e);
+                throw new TravelAgencyDAOException("order find by userId exception", e);
+            } finally {
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException e) {
+                        LOGGER.error("database access error occurs", e);
+                        throw new TravelAgencyDAOException("database access error occurs", e);
+                    }
+                }
+                if (connectionPool != null) {
+                    connectionPool.releaseConnection(connection);
+                }
+                LOGGER.debug("finish find order by userId");
+            }
+        }
+        return ordersByUserId;
+    }
+
 }

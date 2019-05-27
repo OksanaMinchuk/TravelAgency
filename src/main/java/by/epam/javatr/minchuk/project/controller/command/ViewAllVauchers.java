@@ -58,12 +58,10 @@ public class ViewAllVauchers implements Command {
 
             if (!vauchers.isEmpty()) {
                 request.setAttribute("vauchers", vauchers);
-                page = PageContainer.VIEW_ALL_VAUCHERS;
             } else {
                 request.setAttribute("error", "Vauchers not found");
-                page = PageContainer.VIEW_ALL_VAUCHERS;
             }
-
+            page = PageContainer.VIEW_ALL_VAUCHERS;
         } catch (TravelAgencyServiceException e) {
             LOGGER.error("ViewAllVauchers error.", e);
             page = PageContainer.ERROR_PAGE;

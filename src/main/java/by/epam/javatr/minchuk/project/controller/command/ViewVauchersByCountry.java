@@ -44,7 +44,6 @@ public class ViewVauchersByCountry implements Command {
 
         try {
             vauchers = vaucherService.getVauchersByCountry(country);
-
             List<Entity> orders = orderService.findAll();
             Order order;
 
@@ -55,6 +54,9 @@ public class ViewVauchersByCountry implements Command {
                     if (vauchers.get(i).getId() == order.getVaucher().getId()) {
                         vauchers.remove(i);
                     }
+                    if(vauchers.size() == 0) {
+                        break;
+                    }
                 }
             }
 
@@ -62,7 +64,6 @@ public class ViewVauchersByCountry implements Command {
                 request.setAttribute("vauchers", vauchers);
             } else {
                 request.setAttribute("error", "Vauchers not found");
-
             }
             page = PageContainer.VIEW_ALL_VAUCHERS;
         } catch (TravelAgencyServiceException e) {

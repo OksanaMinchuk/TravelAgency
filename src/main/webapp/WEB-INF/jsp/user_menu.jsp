@@ -30,6 +30,9 @@
            <fmt:message key="local.book" var="book"/>
            <fmt:message key="local.send" var="send"/>
            <fmt:message key="local.account" var="account"/>
+           <fmt:message key="local.createOrderTable" var="createOrderTable"/>
+           <fmt:message key="local.cancelOrder" var="cancelOrder"/>
+           <fmt:message key="local.myOrders" var="myOrders"/>
         </fmt:bundle>
 
    </head>
@@ -50,7 +53,7 @@
                     </td>
                     <td>
                         <p align="center" style="color: DarkBlue; font-weight: bold; font-size: 16px; font-style: italic">
-                             <a href="Controller?command=choose_vaucher" class="button">${chooseVaucher}</a>
+                             <a href="Controller?command=show_order_by_user_id" class="button">${myOrders}</a>
                         </p>
                     </td>
                      <td>
@@ -62,12 +65,14 @@
             </table>
          </div>
 
-<!-- VAUCHER ORDER TABLE -->
+
 <div align="center" style="margin-top: 5px; margin-bottom: 5px">
 <form action="Controller" method="post">
 <input type="hidden" name="command" value="book_vaucher" />
 <input type="hidden" name="id" value="${sessionScope.id}" />
+<!------- CREATE VAUCHER ORDER TABLE ------------->
 <table>
+<caption style="color: GreenYellow; font-weight: bold">${createOrderTable}</caption>
     <tr>
         <td>
             <table border="1"  style="border: 3px ridge DarkBlue">
@@ -131,12 +136,61 @@
 </table>
     <div align="middle" style="margin-top: 10px">
         <input type="submit" class="btn btn-success" value="${send}"/>
+    </div>
+</form>
+<hr align="center" width="90%" size="10" color="GreenYellow" />
+
+<!------- CANCEL VAUCHER ORDER TABLE ------------->
+<form action="Controller" method="post">
+<input type="hidden" name="command" value="cancel_order" />
+<input type="hidden" name="id" value="${sessionScope.id}" />
+<table>
+<caption style="color: GreenYellow; font-weight: bold">${myOrders}</caption>
+    <tr>
+        <td>
+            <table border="1"  style="border: 3px ridge DarkBlue">
+            <tr align="center" style="font-weight: bold">
+               <td>№</td>
+               <td>${country}</td>
+               <td>${dateFrom}</td>
+               <td>${dateTo}</td>
+               <td>${tourtype}</td>
+               <td>${tourhot}</td>
+               <td>${hotelname}</td>
+               <td>${transport}</td>
+               <td>${priceColumn}</td>
+               <td>${cancelOrder}</td>
+           </tr>
+           <c:forEach var="myOrder" items="${ordersByUserId}" varStatus="status">
+           <tr height="39">
+                   <td><c:out value="${status.count}"/></td>
+                   <td><c:out value="${myOrder.vaucher.country}"/></td>
+                   <td><c:out value="${myOrder.vaucher.dateFrom}"/></td>
+                   <td><c:out value="${myOrder.vaucher.dateTo}"/></td>
+                   <td><c:out value="${myOrder.vaucher.tour.type}"/></td>
+                   <td><c:out value="${myOrder.vaucher.tour.hot}"/></td>
+                   <td><c:out value="${myOrder.vaucher.hotel.name}"/></td>
+                   <td><c:out value="${myOrder.vaucher.transport}"/></td>
+                   <td><c:out value="${myOrder.totalPrice}"/></td>
+                   <td>
+                       <label><input type="radio" name="myOrderId" value="${myOrder.id}">${cancelOrder}</label>
+                   </td>
+           </tr>
+           </c:forEach>
+           </table>
+       </td>
+    </tr>
+</table>
+    <div align="middle" style="margin-top: 10px">
+        <input type="submit" class="btn btn-success" value="${send}"/>
    </div>
 </form>
 </div>
+<hr align="center" width="90%" size="10" color="GreenYellow" />
 
-<div style="margin-bottom: 400px">
+<div align="center" style="margin-bottom: 400px">
     <h3 style="color: red; font-weight: bold">${notEnouthMoneyMessage}</h3>
+    <h2 align="center" style="color: red; font-weight: bold">${errorUserMenu}</h2>
 </div>
 
    <%@ include file="footer.jsp" %>

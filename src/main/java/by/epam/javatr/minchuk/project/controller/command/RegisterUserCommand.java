@@ -34,7 +34,6 @@ public class RegisterUserCommand implements Command {
     public String execute(HttpServletRequest request) {
         LOGGER.debug("start RegisterUserCommand");
 
-        HttpSession session = request.getSession(true);
         User user = null;
         String page;
         if (validate(request)) {
@@ -65,7 +64,7 @@ public class RegisterUserCommand implements Command {
                         }
                     page = PageContainer.RESULT_REGISTER_PAGE;
                 } else {
-                    session.setAttribute("error", "Login is not uniqe. Please try again.");
+                    request.setAttribute("error", "Login is not uniqe. Please try again.");
                     page = PageContainer.ERROR_PAGE;
                 }
             } catch (TravelAgencyServiceException e) {
@@ -79,7 +78,7 @@ public class RegisterUserCommand implements Command {
                 page = PageContainer.ERROR_PAGE;
             }
         } else {
-            session.setAttribute("error", "The data entered is not correct. Please try again.");
+            request.setAttribute("error", "The data entered is not correct. Please try again.");
             page = PageContainer.ERROR_PAGE;
         }
         LOGGER.debug("finish RegisterUserCommand" + user);

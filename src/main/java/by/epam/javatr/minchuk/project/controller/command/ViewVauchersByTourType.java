@@ -12,6 +12,7 @@ import by.epam.javatr.minchuk.project.service.VaucherService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,10 +45,8 @@ public class ViewVauchersByTourType implements Command {
 
         try {
             vauchers = vaucherService.getVauchersByTourType(tourtype);
-
             List<Entity> orders = orderService.findAll();
             Order order;
-
             //not show not available to order vauchers
             for (int i = 0; i < vauchers.size(); i++) {
                 for (int j = 0; j < orders.size(); j++) {
@@ -55,14 +54,15 @@ public class ViewVauchersByTourType implements Command {
                     if (vauchers.get(i).getId() == order.getVaucher().getId()) {
                         vauchers.remove(i);
                     }
+                    if(vauchers.size() == 0) {
+                        break;
+                    }
                 }
             }
-
             if (!vauchers.isEmpty()) {
                 request.setAttribute("vauchers", vauchers);
             } else {
                 request.setAttribute("error", "Vauchers not found");
-
             }
             page = PageContainer.VIEW_ALL_VAUCHERS;
         } catch (TravelAgencyServiceException e) {

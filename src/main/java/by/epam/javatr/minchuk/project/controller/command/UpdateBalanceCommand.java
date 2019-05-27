@@ -52,16 +52,16 @@ public class UpdateBalanceCommand implements Command {
 
             if (newBalance >= 0) {
                 userService.setMoney(userID, newBalance);
-                session.setAttribute("acceptedMessage", "accepted");
+                request.setAttribute("acceptedMessage", "accepted");
                 page = PageContainer.ACCOUNT_PAGE;
             } else {
                 LOGGER.error("Incorrect balace value.");
-                session.setAttribute("error", "Incorrect balance value.");
+                request.setAttribute("error", "Incorrect balance value.");
                 page = PageContainer.ERROR_PAGE;
             }
         } catch (TravelAgencyServiceException | TravelAgencyCommandException e) {
             LOGGER.error("TravelAgencyServiceException error.", e);
-            session.setAttribute("error", "Incorrect balance value.");
+            request.setAttribute("error", "Incorrect balance value.");
             page = PageContainer.ERROR_PAGE;
         }
         LOGGER.debug("finish UpdateBalanceCommand");

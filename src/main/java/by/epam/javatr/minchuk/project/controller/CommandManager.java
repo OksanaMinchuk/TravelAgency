@@ -36,6 +36,10 @@ public class CommandManager {
         commands.put(CommandContainer.VIEW_ACCOUNT, new ViewAccountCommand());
         commands.put(CommandContainer.UPDATE_BALANCE, new UpdateBalanceCommand());
         commands.put(CommandContainer.TO_USER_MENU, new ToUserMenu());
+        commands.put(CommandContainer.SHOW_ORDER_BY_USER_ID, new ShowOrderByUserID());
+        commands.put(CommandContainer.CANCEL_ORDER, new CancelOrderCommand());
+        commands.put(CommandContainer.ADD_VAUCHER, new AddVaucherCommand());
+        commands.put(CommandContainer.UPDATE_TOUR, new UpdateTourCommand());
 
     }
 

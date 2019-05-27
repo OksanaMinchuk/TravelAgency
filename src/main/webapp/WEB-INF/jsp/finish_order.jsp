@@ -18,6 +18,7 @@
             <fmt:message key="local.finishMessage" var="finishMessage"/>
             <fmt:message key="local.countryOrderMessage" var="countryOrderMessage"/>
             <fmt:message key="local.totalPriceMessage" var="totalPriceMessage"/>
+            <fmt:message key="local.toUserMenu" var="toUserMenu"/>
         </fmt:bundle>
 
    </head>
@@ -35,6 +36,14 @@
                         <p>${userName}${finishMessage}</p>
                         <p>${countryOrderMessage}${countryOrder}</p>
                         <p>${totalPriceMessage}${totalPrice}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <form action="Controller" method="GET"  align="center">
+                            <input type="hidden" name="command" value="to_user_menu" />
+                            <button class="btn btn-success" type="submit">${toUserMenu}</button>
+                        </form>
                     </td>
                 </tr>
             </table>

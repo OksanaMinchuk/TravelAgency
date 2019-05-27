@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="customTags" prefix="ctg"%>
 
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@
     </div>
     <div class="row">
           <div class="col-sm-4"></div>
-          <div class="col-sm-4">Copyright &copy; TravelAgency.com. 2019. All right reserved</div>
+                <div class="col-sm-4"><ctg:CopyRight/></div>
           <div class="col-sm-4"></div>
     </div>
 </div>
