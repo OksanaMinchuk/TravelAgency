@@ -40,6 +40,7 @@ public class CommandManager {
         commands.put(CommandContainer.CANCEL_ORDER, new CancelOrderCommand());
         commands.put(CommandContainer.ADD_VAUCHER, new AddVaucherCommand());
         commands.put(CommandContainer.UPDATE_TOUR, new UpdateTourCommand());
+        commands.put(CommandContainer.UPDATE_DISCOUNT, new UpdateDiscountCommand());
 
     }
 

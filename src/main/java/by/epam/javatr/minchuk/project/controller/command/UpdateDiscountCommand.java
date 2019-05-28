@@ -5,18 +5,20 @@ import by.epam.javatr.minchuk.project.controller.PageContainer;
 import by.epam.javatr.minchuk.project.model.exception.technicalexeption.TravelAgencyServiceException;
 import by.epam.javatr.minchuk.project.service.ServiceFactory;
 import by.epam.javatr.minchuk.project.service.TourService;
+import by.epam.javatr.minchuk.project.service.UserService;
+import by.epam.javatr.minchuk.project.service.impl.UserServiceImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Class {@code UpdateTourCommand}
+ * Class {@code UpdateDiscountCommand}
  *
  * @author Oksana Minchuk
  * @version 1.0 25/05/2019
  */
 
-public class UpdateTourCommand implements Command {
+public class UpdateDiscountCommand implements Command {
 
     private static final Logger LOGGER;
 
@@ -26,25 +28,31 @@ public class UpdateTourCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOGGER.debug("start UpdateTourCommand");
+        LOGGER.debug("start UpdateDiscountCommand");
         String page = null;
 
         ServiceFactory factory = ServiceFactory.getInstance();
-        TourService tourService = factory.getTourService();
+        UserService userService = factory.getUserService();
 
         try {
-            int idTour = Integer.parseInt(request.getParameter("idTour"));
-            boolean isHot = Boolean.parseBoolean(request.getParameter("isHot"));
-            tourService.setHotTour(idTour, isHot);
+           // LOGGER.debug(request.getParameter("discountVal"));
+            int idUser = Integer.parseInt(request.getParameter("idUser"));
+            LOGGER.debug(idUser);
+            double discount = Double.parseDouble(request.getParameter("discountVal"));
 
-            request.setAttribute("acceptedMessageAdminUpdate", "update tour accepted");
+
+            LOGGER.debug(discount);
+            userService.setDiscount(idUser, discount);
+
+            request.setAttribute("acceptedMessageAdminDiscount", "update discount accepted");
             page = PageContainer.ADMIN_MENU_PAGE;
 
         } catch (TravelAgencyServiceException e) {
-            LOGGER.error("UpdateTourCommand error.", e);
+            LOGGER.error("UpdateDiscountCommand error.", e);
             page = PageContainer.ERROR_PAGE;
         }
-        LOGGER.debug("finish UpdateTourCommand");
+        LOGGER.debug("finish UpdateDiscountCommand");
         return page;
     }
+
 }
